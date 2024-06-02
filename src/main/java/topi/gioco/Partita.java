@@ -1247,6 +1247,8 @@ public class Partita {
 					}
 					else if(this.sc.isVisibile(this.bersaglio) && this.bersaglio.getX()==6 && this.bersaglio.getY()==6){
 						sparare();
+						System.out.println("TU: Beh, e' stato facile, in realta'...");
+						System.out.println();
 						System.out.println("Hai sconfitto la talpa cattiva, che ha lasciato cadere una nota misteriosa...");
 						// Anadimos nota
 						PannelloBase pannelloNota = sc.getPannello(this.bersaglio);
