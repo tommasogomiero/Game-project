@@ -44,9 +44,9 @@ public class Partita {
 	private final static String IMAGE_EXIT = "immagini/exit.png";
 	static double doubleRandomNumber = Math.random()*10000;
 	static int doubleConv = (int)doubleRandomNumber;
-	static String password = "" + doubleConv; 
+	static String password = "" + doubleConv;
 	Scanner in = new Scanner(System.in);
-	
+
 	/* Variabili */
 	private Scenario sc;
 	private Scenario sc_menu;
@@ -73,10 +73,10 @@ public class Partita {
 	private ChiaveMaestra provaChiaveMaestra;
 	private Chiave provaChiave1;
 	private Chiave provaChiave2;
-	private Nota provaNota;  
-	
+	private Nota provaNota;
+
 	/* Costruttori */
-	
+
 	public Partita(int larghezza, int altezza){
 		this.sc = new Scenario(larghezza, altezza);
 		this.sc_menu = new Scenario(1,1);
@@ -105,14 +105,14 @@ public class Partita {
 		this.provaNota = new Nota(0);
 		this.provaTalpaIntelligente = new TalpaIntelligente();
 	}
-	
+
 	public boolean spostareBersaglioUlt(){
 		Posizione aux = new Posizione(bersaglio_ult.getX(), bersaglio_ult.getY());
 		this.bersaglio_ult = bersaglio;
 		this.bersaglio = aux;
 		return true;
 	}
-	
+
 	public boolean spostareBersaglio(Direzione vicina){
 		if(this.sc.isValida(bersaglio.getVicina(vicina))) {
 			this.bersaglio_ult = bersaglio;
@@ -133,7 +133,7 @@ public class Partita {
 			else return false;
 		}
 	}
-	
+
 	public void sparare() {
 		if(this.isInGioco()) {
 			if(!this.sc.isVisibile(this.bersaglio)) {
@@ -151,57 +151,57 @@ public class Partita {
 			//if(this.colpiRimanenti > MAX_COLPI) this.colpiRimanenti = MAX_COLPI;
 		}
 	}
-	
+
 	public void aggiornare() {
 		this.sc.aggiornare();
 	}
-	
+
 	public void addPannello(PannelloBase pannello) {
 		this.sc.setPannello(pannello);
 	}
-	
+
 	public void addPannelloMenu(PannelloBase pannello) {
 		this.sc_menu.setPannello(pannello);
 	}
-	
+
 	//Getters
 	public Scenario getSc() {
 		return this.sc;
 	}
-	
+
 	public Posizione getBersaglio() {
 		return this.bersaglio;
 	}
-	
+
 	public String getImageBersaglio() {
 		return IMAGE_BERSAGLIO;
 	}
-	
+
 	public String getImageInizio(){
 		return IMAGE_INIZIO;
 	}
-	
+
 	public String getImageWin(){
 		return this.sc_menu.getPannello(0,0).getImage();
 	}
-	
+
 	public String getImageExit(){
 		return IMAGE_EXIT;
 	}
-	
+
 	public boolean getExit(){
 		return this.exit;
 	}
-	
+
 	//Setters
 	public void setBersaglio(int x, int y) {
 		this.bersaglio = new Posizione(x,y);
 	}
-	
+
 	public void setBersaglioUlt(int x, int y) {
 		this.bersaglio_ult = new Posizione(x,y);
 	}
-	
+
 	public LinkedList<Immagine> getImmaginePartita(){
 		LinkedList<Immagine> listaImmagini = new LinkedList<Immagine>();
 		for(int i=0; i<this.sc.getLarghezza(); i++) {
@@ -212,7 +212,7 @@ public class Partita {
 		listaImmagini.add(new Immagine(this.getImageBersaglio(),this.bersaglio.getX(),this.bersaglio.getY()));
 		return listaImmagini;
 	}
-	
+
 	//save
 	public void salvaStato() {
 		Posizione p1 = new Posizione(6,0);
@@ -225,7 +225,7 @@ public class Partita {
 		boolean rata1 = sc.getPannello(p3).hayElemento(provaTopo);
 		boolean rata2 = sc.getPannello(p4).hayElemento(provaTopo1);
 		boolean topo3 = sc.getPannello(p5).hayElemento(provaTalpaIntelligente);
-				
+
 		int pistola_x;
 		int pistola_y;
 		if(pistola){
@@ -296,7 +296,7 @@ public class Partita {
 			nota_x = provaNota.getPannello().getPosi().getX();
 			nota_y = provaNota.getPannello().getPosi().getY();
 		}
-				
+
 		boolean[][] paneles = new boolean[sc.getLarghezza()][sc.getLarghezza()];
 		for(int l = 0; l<sc.getLarghezza(); l++) {
 			for(int h = 0; h<sc.getAltezza(); h++) {
@@ -304,7 +304,7 @@ public class Partita {
 				else paneles[l][h] = false;
 			}
 		}
-		
+
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA_FILE))) {
 			writer.write("bersaglioX=" + this.bersaglio.getX());
 			writer.newLine();
@@ -368,23 +368,23 @@ public class Partita {
 			writer.newLine();
 			writer.write("rata2=" + rata2);
 			writer.newLine();
-			
+
 			for (int i = 0; i < sc.getLarghezza(); i++) {
 			    for (int j = 0; j < sc.getAltezza(); j++) {
 				writer.write(i + " " + j + "=" + paneles[i][j]);
 				writer.newLine();
 			    }
 			}
-			
-			
+
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
     	}
-    	
+
 	//load
 	public void caricaStato() {
-	
+
 		int bersaglioX=0;
 		int bersaglioY=0;
 		int bersaglioUltX=0;
@@ -424,10 +424,10 @@ public class Partita {
 		}
 		pannelli[0][0]=false;
 		pannelli[1][0]=false;
-		pannelli[0][1]=false;	
-			
+		pannelli[0][1]=false;
+
 		try (BufferedReader reader = new BufferedReader(new FileReader(RUTA_FILE))) {
-		
+
 			String line;
 			while ((line = reader.readLine()) != null) {
 			    	String[] partes = line.split("=");
@@ -680,17 +680,17 @@ public class Partita {
 			}
         	} catch (IOException e) {
             		e.printStackTrace();
-        	}		   
-			
+        	}
+
 		this.bersaglio = new Posizione(bersaglioX, bersaglioY);
 		this.bersaglio_ult = new Posizione(bersaglioUltX, bersaglioUltY);
-				
+
 		Posizione p1 = new Posizione(6,0);
 		Posizione p2 = new Posizione(0,6);
 		Posizione p3 = new Posizione(3,0);
 		Posizione p4 = new Posizione(3,6);
 		Posizione p5 = new Posizione(6,6);
-				
+
 		if(!isTopo1) sc.getPannello(p1).removeElemento(provaTalpaGoffa);
 		else if(!sc.getPannello(p1).hayElemento(provaTalpaGoffa)){
 			PannelloBase provaPannelloTalpaGoffa = sc.getPannello(6, 0);
@@ -723,15 +723,15 @@ public class Partita {
 		}
 
 		Posizione p;
-				
+
 		if(!this.pistola) sc.getPannello(provaPistola.getPannello().getPosi()).removeElemento(provaPistola);
 		if(!isPistola){
 			p = new Posizione(pistolaX, pistolaY);
 			PannelloBase pannelloPistola = sc.getPannello(p);
 			pannelloPistola.addElemento(provaPistola);
-			addPannello(pannelloPistola);	
+			addPannello(pannelloPistola);
 		}
-				
+
 		if(!this.munizioni) sc.getPannello(pruebaMunicion.getPannello().getPosi()).removeElemento(pruebaMunicion);
 		if(!isMunizioni){
 			p = new Posizione(munizioniX, munizioniY);
@@ -739,7 +739,7 @@ public class Partita {
 			pannelloMunizioni.addElemento(pruebaMunicion);
 			addPannello(pannelloMunizioni);
 		}
-			
+
 		if(!this.monete){
 			if(provaMoneta.getPannello()!=null) sc.getPannello(provaMoneta.getPannello().getPosi()).removeElemento(provaMoneta);
 		}
@@ -751,8 +751,8 @@ public class Partita {
 				addPannello(pannelloMoneta);
 			}
 		}
-			
-				
+
+
 		if(!this.nota){
 			if(provaNota.getPannello()!=null) sc.getPannello(provaNota.getPannello().getPosi()).removeElemento(provaNota);
 		}
@@ -764,10 +764,10 @@ public class Partita {
 				addPannello(pannelloNota);
 			}
 		}
-			
+
 		if(!this.chiave_maestra){
 			if(provaChiaveMaestra.getPannello()!=null) sc.getPannello(provaChiaveMaestra.getPannello().getPosi()).removeElemento(provaChiaveMaestra);
-		}	
+		}
 		if(!isChiaveMaestra){
 			if(chiaveMaestraX!=-1 && chiaveMaestraY!=-1){
 				p = new Posizione(chiaveMaestraX, chiaveMaestraY);
@@ -776,10 +776,10 @@ public class Partita {
 				addPannello(pannelloChiaveMaestra);
 			}
 		}
-			
+
 		if(!this.chiave1){
 			if(provaChiave1.getPannello()!=null) sc.getPannello(provaChiave1.getPannello().getPosi()).removeElemento(provaChiave1);
-		}	
+		}
 		if(!isChiave1){
 			if(chiave1X!=-1 && chiave1Y!=-1){
 				p = new Posizione(chiave1X, chiave1Y);
@@ -788,10 +788,10 @@ public class Partita {
 				addPannello(pannelloChiave1);
 			}
 		}
-		
+
 		if(!this.chiave2){
 			if(provaChiave2.getPannello()!=null) sc.getPannello(provaChiave2.getPannello().getPosi()).removeElemento(provaChiave2);
-		}	
+		}
 		if(!isChiave2){
 			if(chiave2X!=-1 && chiave2Y!=-1){
 				p = new Posizione(chiave2X, chiave2Y);
@@ -800,7 +800,7 @@ public class Partita {
 				addPannello(pannelloChiave2);
 			}
 		}
-				
+
 		for(int l = 0; l<sc.getLarghezza(); l++) {
 			for(int h = 0; h<sc.getAltezza(); h++) {
 				p = new Posizione(l,h);
@@ -812,7 +812,7 @@ public class Partita {
 				else sc.sollevarePannello(p);
 			}
 		}
-		
+
 		this.zaino = getZaino;
 		this.pistola = isPistola;
 		this.monete = isMonete;
@@ -822,23 +822,23 @@ public class Partita {
 		this.chiave2 = isChiave2;
 		this.nota = isNota;
     	}
-		
+
 	public boolean isInGioco() {
 		return !this.exit && !this.win;
 	}
-	
+
 	public void exit(){
 		this.exit = true;
 	}
-	
+
 	public void win(){
 		this.win = true;
 	}
-	
+
 	// Prepare game
 	public void prepare(){
 		int  n, i, j;
-		
+
 		// Anadimos paneles de forma aleatoria
 		for(int l = 0; l<sc.getLarghezza(); l++) {
 			for(int h = 0; h<sc.getAltezza(); h++) {
@@ -854,11 +854,11 @@ public class Partita {
 				else if(l==5 && h==1) n=7;
 				else n=3;
 				switch(n) {
-				case 0 : 
+				case 0 :
 					PannelloResistente pannelloResistente = new PannelloResistente(l,h);
 					addPannello(pannelloResistente);
 					break;
-				case 1 : 
+				case 1 :
 					PannelloAleatorio pannelloAleatorio = new PannelloAleatorio(l,h);
 					addPannello(pannelloAleatorio);
 					break;
@@ -889,33 +889,33 @@ public class Partita {
 				default:
 					Blocco blocco = new Blocco(l,h);
 					addPannello(blocco);
-					break;	
+					break;
 				}
 			}
 		}
-		
+
 		PannelloMenu menu = new PannelloMenu(0,0);
 		addPannelloMenu(menu);
-		
+
 		/*----------------------------------------------------------*/
 		// ELEMENTOS PASIVOS
-		
+
 		// Anadimos Municiones
 		PannelloBase provaPannelloMunizioni = sc.getPannello(0, 1);
 		provaPannelloMunizioni.addElemento(pruebaMunicion);
 		addPannello(provaPannelloMunizioni);
-		
+
 		// Anadimos pistola
 		PannelloBase provaPannelloPistola = sc.getPannello(0, 0);
 		provaPannelloPistola.addElemento(provaPistola);
 		addPannello(provaPannelloPistola);
-		
+
 		// Anadimos tesoro
 		Tesoro provaTesoro = new Tesoro(0);
 		PannelloBase provaPannelloTesoro = sc.getPannello(5, 6);
 		provaPannelloTesoro.addElemento(provaTesoro);
 		addPannello(provaPannelloTesoro);
-		
+
 		// ELEMENTOS ACTIVOS
 		//Anadimos 2 Topos
 		i = sc.getLarghezza()/2;
@@ -928,33 +928,33 @@ public class Partita {
 		PannelloBase provaPannelloTopo1 = sc.getPannello(i, j);
 		provaPannelloTopo1.addElemento(provaTopo1);
 		addPannello(provaPannelloTopo1);
-		
+
 		// Anadimos TalpaGoffa
 		i = sc.getLarghezza()-1;
 		j = 0;
 		PannelloBase provaPannelloTalpaGoffa = sc.getPannello(i, j);
 		provaPannelloTalpaGoffa.addElemento(provaTalpaGoffa);
 		addPannello(provaPannelloTalpaGoffa);
-		
+
 		// Anadimos TalpaCieca
 		i = 0;
 		j = sc.getAltezza()-1;
 		PannelloBase provaPannelloTalpaCieca = sc.getPannello(i, j);
 		provaPannelloTalpaCieca.addElemento(provaTalpaCieca);
 		addPannello(provaPannelloTalpaCieca);
-		
+
 		// Anadimos TalpaIntelligente
 		i = sc.getLarghezza()-1;
 		j = sc.getAltezza()-1;
 		PannelloBase provaPannelloTalpaIntelligente = sc.getPannello(i, j);
 		provaPannelloTalpaIntelligente.addElemento(provaTalpaIntelligente);
 		addPannello(provaPannelloTalpaIntelligente);
-		
+
 		sc.abbatterePannello(this.bersaglio);
 		sc.abbatterePannello(this.bersaglio.getVicina(Direzione.SOPRA));
 		sc.abbatterePannello(this.bersaglio.getVicina(Direzione.DESTRA));
 	}
-	
+
 	/* Stories */
 	public void start(){
 		System.out.println();
@@ -970,7 +970,7 @@ public class Partita {
 				String cmd2 = in.nextLine();
 				boolean fatto = false;
 				while (!fatto) {
-		
+
 					if (cmd2.equalsIgnoreCase("s")) {
 						System.out.println("Sei arrivato in un orto gigante! ");
 						fatto = true;
@@ -987,12 +987,12 @@ public class Partita {
 				done = true;
 			}
 			else System.out.println("Comando non riconosciuto! Inserire S/N");
-				
+
 		}
 	}
-	
+
 	public void interagire(){
-		
+
 		System.out.println();
 		System.out.println("///////////////////////////////////////////////");
 		System.out.println("................................................");
@@ -1000,57 +1000,57 @@ public class Partita {
 		if(!this.sc.isVisibile(this.bersaglio)){
 			if(this.bersaglio.getX()==6 && this.bersaglio.getY()==6)
 				System.out.println("QUESTO E' UN PANNELLO EXTRA RESISTENTE. Chissa' cosa si nasconde dietro...");
-			else if(this.bersaglio.getX()==0 && this.bersaglio.getY()==6) 
+			else if(this.bersaglio.getX()==0 && this.bersaglio.getY()==6)
 				System.out.println("QUESTO E UN PANNELLO PIU' RESISTENTE. Chissa' cosa si nasconde dietro...");
-			else if(this.bersaglio.getX()==6 && this.bersaglio.getY()==0) 
+			else if(this.bersaglio.getX()==6 && this.bersaglio.getY()==0)
 				System.out.println("QUESTO E UN PANNELLO PIU' RESISTENTE. Chissa' cosa si nasconde dietro...");
-			else if(this.bersaglio.getX()==3 && this.bersaglio.getY()==0) 
+			else if(this.bersaglio.getX()==3 && this.bersaglio.getY()==0)
 				System.out.println("QUESTO E UN PANNELLO CON RESISTENZA ALEATORIA. Chissa' cosa si nasconde dietro...");
-			else if(this.bersaglio.getX()==3 && this.bersaglio.getY()==6) 
+			else if(this.bersaglio.getX()==3 && this.bersaglio.getY()==6)
 				System.out.println("QUESTO E' UN PANNELLO CON RESISTENZA ALEATORIA. Chissa' cosa si nasconde dietro...");
 			else System.out.println("QUESTO E' UN PANNELLO DEBOLE. VIENE ABBATTUTO CON UN SOLO COLPO. Non dovrebbe esserci molto dietro...");
 		}
 		else{
-			if(sc.getPannello(this.bersaglio).hayElemento(provaTopo) || sc.getPannello(this.bersaglio).hayElemento(provaTopo1)) 
+			if(sc.getPannello(this.bersaglio).hayElemento(provaTopo) || sc.getPannello(this.bersaglio).hayElemento(provaTopo1))
 				System.out.println("ATTENZIONE!!! Hai trovato un topo nemico!!!");
-			if(sc.getPannello(this.bersaglio).hayElemento(provaTalpaIntelligente)) 
+			if(sc.getPannello(this.bersaglio).hayElemento(provaTalpaIntelligente))
 				System.out.println("ATTENZIONE!!! Hai trovato la talpa malvagia!!! Sconfiggila, dovrebbe sapere come aprire la cassaforte!");
-			if(sc.getPannello(this.bersaglio).hayElemento(provaTalpaGoffa) || sc.getPannello(this.bersaglio).hayElemento(provaTalpaCieca)) 
+			if(sc.getPannello(this.bersaglio).hayElemento(provaTalpaGoffa) || sc.getPannello(this.bersaglio).hayElemento(provaTalpaCieca))
 				System.out.println("Sotto al pannello che hai appena distrutto era intrappolata una talpa. Speriamo che ti sia riconoscente...");
 		}
-		
+
 		System.out.println("Cosa vuoi fare?");
-		if(this.sc.isValida(bersaglio.getVicina(Direzione.DESTRA))) 
+		if(this.sc.isValida(bersaglio.getVicina(Direzione.DESTRA)))
 			System.out.println("d - ANDARE A DESTRA");
-		if(this.sc.isValida(bersaglio.getVicina(Direzione.SINISTRA))) 
+		if(this.sc.isValida(bersaglio.getVicina(Direzione.SINISTRA)))
 			System.out.println("a - ANDARE A SINISTRA");
-		if(this.sc.isValida(bersaglio.getVicina(Direzione.SOPRA))) 
+		if(this.sc.isValida(bersaglio.getVicina(Direzione.SOPRA)))
 			System.out.println("w - ANDARE SOPRA");
-		if(this.bersaglio.getX()==5 && this.bersaglio.getY()==0) 
+		if(this.bersaglio.getX()==5 && this.bersaglio.getY()==0)
 			System.out.println("w -PERCORRERE IL PASSAGGIO SEGRETO");
-		if(this.sc.isValida(bersaglio.getVicina(Direzione.SOTTO))) 
+		if(this.sc.isValida(bersaglio.getVicina(Direzione.SOTTO)))
 			System.out.println("s - ANDARE SOTTO");
-		if(this.bersaglio.getX()==1 && this.bersaglio.getY()==6) 
+		if(this.bersaglio.getX()==1 && this.bersaglio.getY()==6)
 			System.out.println("s - PERCORRERE IL PASSAGGIO SEGRETO");
-		if(this.bersaglio.getX()==5 && this.bersaglio.getY()==6 && this.sc.isVisibile(this.bersaglio) && this.chiave_maestra) 
+		if(this.bersaglio.getX()==5 && this.bersaglio.getY()==6 && this.sc.isVisibile(this.bersaglio) && this.chiave_maestra)
 			System.out.println("usare chiave maestra - PER APRIRE IL FORZIERE");
-		if(this.sc.isVisibile(this.bersaglio) && (sc.getPannello(this.bersaglio).hayElemento(provaTalpaGoffa) || sc.getPannello(this.bersaglio).hayElemento(provaTalpaCieca))) 
+		if(this.sc.isVisibile(this.bersaglio) && (sc.getPannello(this.bersaglio).hayElemento(provaTalpaGoffa) || sc.getPannello(this.bersaglio).hayElemento(provaTalpaCieca)))
 			System.out.println("parlare - PER INTERAGIRE");
-		if(this.pistola==true && munizioni==true && (!this.sc.isVisibile(this.bersaglio) || sc.getPannello(this.bersaglio).hayElemento(provaTalpaIntelligente) || sc.getPannello(this.bersaglio).hayElemento(provaTopo) || sc.getPannello(this.bersaglio).hayElemento(provaTopo1))) 
+		if(this.pistola==true && munizioni==true && (!this.sc.isVisibile(this.bersaglio) || sc.getPannello(this.bersaglio).hayElemento(provaTalpaIntelligente) || sc.getPannello(this.bersaglio).hayElemento(provaTopo) || sc.getPannello(this.bersaglio).hayElemento(provaTopo1)))
 			System.out.println("f - PER SPARARE");
-		if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(pruebaMunicion)) 
+		if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(pruebaMunicion))
 			System.out.println("prendere munizioni - PER RACCOGLIERE LE MUNIZIONI");
-		if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaPistola)) 
+		if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaPistola))
 			System.out.println("prendere pistola - PER RACCOGLIERE LA PISTOLA");
-		if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaMoneta)) 
+		if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaMoneta))
 			System.out.println("prendere monete - PER PRENDERE LE MONETE");
-		if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaNota)) 
+		if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaNota))
 			System.out.println("prendere nota - PER PRENDERE LA NOTA");
-		if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaChiaveMaestra)) 
+		if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaChiaveMaestra))
 			System.out.println("prendere chiave maestra - PER PRENDERE LA CHIAVE MAESTRA");
-		if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaChiave1)) 
+		if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaChiave1))
 			System.out.println("prendere chiave1 - PER PRENDERE LA CHIAVE 1");
-		if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaChiave2)) 
+		if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaChiave2))
 			System.out.println("prendere chiave2 - PER PRENDERE LA CHIAVE 2");
 		if(this.munizioni==true && this.sc.isVisibile(this.bersaglio)) System.out.println("lasciare munizioni - PER LASCIARE LE MUNIZIONI");
 		if(this.pistola==true && this.sc.isVisibile(this.bersaglio)) System.out.println("lasciare pistola - PER LASCIARE LA PISTOLA");
@@ -1060,22 +1060,22 @@ public class Partita {
 		if(this.chiave1==true) System.out.println("lasciare chiave1 - PER LASCIARE LA CHIAVE 1");
 		if(this.chiave2==true) System.out.println("lasciare chiave2 - PER LASCIARE LA CHIAVE 2");
 		if(this.nota==true) System.out.println("leggere nota - PER LEGGERE LA NOTA");
-		System.out.println("b - PER TORNARE ALL'ULTIMA CASELLA VISITATA");	
+		System.out.println("b - PER TORNARE ALL'ULTIMA CASELLA VISITATA");
 		System.out.println("menu - PER METTERE IN PAUSA IL GIOCO");
 		System.out.println();
-		
+
 		/*QUITAR QUE SE PUEDA ESCRIBIR LO QUE SEA EN TODO MOMENTO*/
-		
+
 		boolean done = false;
 		boolean done2;
-		
+
 		while (!done){
 			if (in.hasNext()) {
 				String cmd = in.nextLine();
 				if (cmd.equalsIgnoreCase("d") && this.sc.isValida(bersaglio.getVicina(Direzione.DESTRA))){
 					spostareBersaglio(Direzione.DESTRA);
 					done = true;
-				} 
+				}
 				else if (cmd.equalsIgnoreCase("a") && this.sc.isValida(bersaglio.getVicina(Direzione.SINISTRA))){
 					spostareBersaglio(Direzione.SINISTRA);
 					if(this.bersaglio.getX()==5 && this.bersaglio.getY()==6 && !this.sc.isVisibile(this.bersaglio)){
@@ -1088,7 +1088,7 @@ public class Partita {
 						else {
 							System.out.println("Password errata!! Ritenta.");
 							spostareBersaglio(Direzione.DESTRA);
-						}	
+						}
 					}
 					done = true;
 				}
@@ -1101,7 +1101,7 @@ public class Partita {
 							System.out.println("annulla - PER TORNARE INDIETRO");
 							System.out.println();
 							String cmd2 = in.nextLine();
-							done2 = false;	
+							done2 = false;
 							while (!done2){
 								if (cmd2.equalsIgnoreCase("pagare")){
 									sc.abbatterePannello(this.bersaglio.getVicina(Direzione.SOPRA));
@@ -1112,7 +1112,7 @@ public class Partita {
 								else if(cmd2.equalsIgnoreCase("annulla")){
 									farlo = false;
 									done2 = true;
-								}	
+								}
 								else{
 									System.out.println("Comando non riconosciuto!");
 									System.out.println("Cosa vuoi fare?");
@@ -1134,8 +1134,8 @@ public class Partita {
 							System.out.println("usare chiave1 - PER APRIRE LA PORTA CON LA CHIAVE 1");
 							System.out.println("annulla - PER TORNARE INDIETRO");
 							System.out.println();
-									
-							done2 = false;	
+
+							done2 = false;
 							String cmd2 = in.nextLine();
 							while (!done2){
 								if (cmd2.equalsIgnoreCase("usare chiave1")){
@@ -1145,7 +1145,7 @@ public class Partita {
 								else if(cmd2.equalsIgnoreCase("annulla")){
 									farlo = false;
 									done2 = true;
-								}	
+								}
 								else{
 									System.out.println("Comando non riconosciuto!");
 									System.out.println("Cosa vuoi fare?");
@@ -1161,7 +1161,7 @@ public class Partita {
 							farlo = false;
 						}
 					}
-							
+
 					if(farlo) spostareBersaglio(Direzione.SOPRA);
 					done = true;
 				}
@@ -1173,7 +1173,7 @@ public class Partita {
 							System.out.println("usare chiave2 - PER APRIRE LA PORTA CON LA CHIAVE 2");
 							System.out.println("annulla - PER TORNARE INDIETRO");
 							System.out.println();
-									
+
 							done2 = false;
 							String cmd2 = in.nextLine();
 							while (!done2){
@@ -1184,7 +1184,7 @@ public class Partita {
 								else if(cmd2.equalsIgnoreCase("annulla")){
 									farlo = false;
 									done2 = true;
-								}	
+								}
 								else{
 									System.out.println("Comando non riconosciuto!");
 									System.out.println("Cosa vuoi fare?");
@@ -1202,7 +1202,7 @@ public class Partita {
 					}
 					if(farlo) spostareBersaglio(Direzione.SOTTO);
 					done = true;
-				} 
+				}
 				else if (cmd.equalsIgnoreCase("usare chiave maestra") && this.bersaglio.getX()==5 && this.bersaglio.getY()==6 && this.sc.isVisibile(this.bersaglio) && this.chiave_maestra){
 					win();
 					done = true;
@@ -1226,7 +1226,7 @@ public class Partita {
 					}
 					done = true;
 				}
-				else if (cmd.equalsIgnoreCase("f") && this.pistola==true && munizioni==true && ((this.sc.isVisibile(this.bersaglio) && this.bersaglio.getX()==3 && this.bersaglio.getY()==6 && sc.getPannello(this.bersaglio).hayElemento(provaTopo1)) || (this.sc.isVisibile(this.bersaglio) && this.bersaglio.getX()==3 && this.bersaglio.getY()==0 && sc.getPannello(this.bersaglio).hayElemento(provaTopo)) || (this.sc.isVisibile(this.bersaglio) && this.bersaglio.getX()==6 && this.bersaglio.getY()==6) || (!this.sc.isVisibile(this.bersaglio)))){ 
+				else if (cmd.equalsIgnoreCase("f") && this.pistola==true && munizioni==true && ((this.sc.isVisibile(this.bersaglio) && this.bersaglio.getX()==3 && this.bersaglio.getY()==6 && sc.getPannello(this.bersaglio).hayElemento(provaTopo1)) || (this.sc.isVisibile(this.bersaglio) && this.bersaglio.getX()==3 && this.bersaglio.getY()==0 && sc.getPannello(this.bersaglio).hayElemento(provaTopo)) || (this.sc.isVisibile(this.bersaglio) && this.bersaglio.getX()==6 && this.bersaglio.getY()==6) || (!this.sc.isVisibile(this.bersaglio)))){
 					if(this.sc.isVisibile(this.bersaglio) && this.bersaglio.getX()==3 && this.bersaglio.getY()==6 && sc.getPannello(this.bersaglio).hayElemento(provaTopo1)){
 						sparare();
 						System.out.println("Hai eliminato il topo. Cosa sono quelle??? MONETE? Puoi prenderle, scommetto che ti serviranno!!");
@@ -1259,10 +1259,10 @@ public class Partita {
 					else if (!this.sc.isVisibile(this.bersaglio)){
 						sparare();
 						done = true;
-					}		
+					}
 				}
 				else if (cmd.equalsIgnoreCase("prendere munizioni") && this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(pruebaMunicion)){
-					if(zaino==5){
+					if(zaino==3){
 					 	System.out.println("Lo zaino è pieno. Non puoi tenerle...");
 					}
 					else{
@@ -1273,7 +1273,7 @@ public class Partita {
 					done = true;
 				}
 				else if (cmd.equalsIgnoreCase("prendere chiave maestra") && this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaChiaveMaestra)){
-					if(zaino==5){
+					if(zaino==3){
 					 	System.out.println("Lo zaino è pieno. Non puoi prenderla...");
 					}
 					else{
@@ -1284,7 +1284,7 @@ public class Partita {
 					done = true;
 				}
 				else if (cmd.equalsIgnoreCase("prendere chiave1") && this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaChiave1)){
-					if(zaino==5){
+					if(zaino==3){
 					 	System.out.println("Lo zaino è pieno. Non puoi prenderla...");
 					}
 					else{
@@ -1295,7 +1295,7 @@ public class Partita {
 					done = true;
 				}
 				else if (cmd.equalsIgnoreCase("prendere chiave2") && this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaChiave2)){
-					if(zaino==5){
+					if(zaino==3{
 					 	System.out.println("Lo zaino è pieno. Non puoi prenderla...");
 					}
 					else{
@@ -1305,8 +1305,8 @@ public class Partita {
 					}
 					done = true;
 				}
-				else if(cmd.equalsIgnoreCase("prendere monete") && this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaMoneta)){			
-					if(zaino==5){
+				else if(cmd.equalsIgnoreCase("prendere monete") && this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaMoneta)){
+					if(zaino==3){
 					 	System.out.println("Lo zaino è pieno. Le monete non ci stanno...");
 					}
 					else{
@@ -1317,7 +1317,7 @@ public class Partita {
 					done = true;
 				}
 				else if (cmd.equalsIgnoreCase("prendere pistola") && this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaPistola)){
-					if(zaino==5){
+					if(zaino==3){
 					 	System.out.println("Lo zaino è pieno. La pistola non entra...");
 					}
 					else{
@@ -1328,7 +1328,7 @@ public class Partita {
 					done = true;
 				}
 				else if (cmd.equalsIgnoreCase("prendere nota") && this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaNota)){
-					if(zaino==5){
+					if(zaino==3){
 					 	System.out.println("Lo zaino è pieno. Non c'e' spazio per la nota...");
 					}
 					else{
@@ -1345,7 +1345,7 @@ public class Partita {
 					pannelloMunizioni.addElemento(pruebaMunicion);
 					addPannello(pannelloMunizioni);
 					done = true;
-				}	
+				}
 				else if (cmd.equalsIgnoreCase("lasciare pistola") && (this.pistola==true) && this.sc.isVisibile(this.bersaglio)){
 					pistola = false;
 					zaino--;
@@ -1415,7 +1415,7 @@ public class Partita {
 					System.out.println("exit - PER USCIRE");
 					System.out.println("annulla - PER TORNARE INDIETRO");
 					System.out.println();
-									
+
 					done2 = false;
 					String cmd2 = in.nextLine();
 					while (!done2){
@@ -1430,10 +1430,10 @@ public class Partita {
 						else if(cmd2.equalsIgnoreCase("exit")){
 							exit();
 							done2 = true;
-						}		
+						}
 						else if(cmd2.equalsIgnoreCase("annulla")){
 							done2 = true;
-						}	
+						}
 						else{
 							System.out.println("Comando non riconosciuto!");
 							System.out.println("MENU DI PAUSA:");
@@ -1454,63 +1454,63 @@ public class Partita {
 					System.out.println("................................................");
 					System.out.println();
 					if(!this.sc.isVisibile(this.bersaglio)){
-						if(this.bersaglio.getX()==6 && this.bersaglio.getY()==6) 
+						if(this.bersaglio.getX()==6 && this.bersaglio.getY()==6)
 							System.out.println("QUESTO E' UN PANNELLO EXTRA RESISTENTE. Chissa cosa si nasconde dietro...");
-						else if(this.bersaglio.getX()==0 && this.bersaglio.getY()==6) 
+						else if(this.bersaglio.getX()==0 && this.bersaglio.getY()==6)
 							System.out.println("QUESTO E' UN PANNELLO PIU RESISTENTE. Chissa cosa si nasconde dietro...");
-						else if(this.bersaglio.getX()==6 && this.bersaglio.getY()==0) 
+						else if(this.bersaglio.getX()==6 && this.bersaglio.getY()==0)
 							System.out.println("QUESTO E' UN PANNELLO PIU RESISTENTE. Chissa cosa si nasconde dietro...");
-						else if(this.bersaglio.getX()==3 && this.bersaglio.getY()==0) 
+						else if(this.bersaglio.getX()==3 && this.bersaglio.getY()==0)
 							System.out.println("QUESTO E' UN PANNELLO CON RESISTENZA ALEATORIA. Chissa cosa si nasconde dietro...");
-						else if(this.bersaglio.getX()==3 && this.bersaglio.getY()==6) 
+						else if(this.bersaglio.getX()==3 && this.bersaglio.getY()==6)
 							System.out.println("QUESTO E' UN PANNELLO CON RESISTENZA ALEATORIA. Chissa' cosa si nasconde dietro...");
 						else System.out.println("QUESTO E' UN PANNELLO DEBOLE. VIENE ABBATTUTO CON UN SOLO COLPO. Non dovrebbe esserci molto dietro...");
 					}
 					else{
-						if(sc.getPannello(this.bersaglio).hayElemento(provaTopo) || sc.getPannello(this.bersaglio).hayElemento(provaTopo1)) 
+						if(sc.getPannello(this.bersaglio).hayElemento(provaTopo) || sc.getPannello(this.bersaglio).hayElemento(provaTopo1))
 							System.out.println("ATTENZIONE!!! Hai trovato un topo nemico!!!");
-						if(sc.getPannello(this.bersaglio).hayElemento(provaTalpaIntelligente)) 
+						if(sc.getPannello(this.bersaglio).hayElemento(provaTalpaIntelligente))
 							System.out.println("ATTENZIONE!!! Hai trovato la talpa malvagia!!!");
 							System.out.println();
 							System.out.println("TALPA MALVAGIA: 'M...Ma...Ma come e' p-possibile??? TU chi sei? Come hai fatto a trovarmi?");
 							System.out.println();
 							System.out.println("Sconfiggila, dovrebbe sapere come aprire la cassaforte!");
-						if(sc.getPannello(this.bersaglio).hayElemento(provaTalpaGoffa) || sc.getPannello(this.bersaglio).hayElemento(provaTalpaCieca)) 
+						if(sc.getPannello(this.bersaglio).hayElemento(provaTalpaGoffa) || sc.getPannello(this.bersaglio).hayElemento(provaTalpaCieca))
 							System.out.println("Sotto al pannello che hai distrutto c'e' una talpa. Speriamo che ti sia riconoscente per averla liberata...");
 					}
-					
+
 					System.out.println("Cosa vuoi fare?");
-					if(this.sc.isValida(bersaglio.getVicina(Direzione.DESTRA))) 
+					if(this.sc.isValida(bersaglio.getVicina(Direzione.DESTRA)))
 						System.out.println("d - PER ANDARE A DESTRA");
-					if(this.sc.isValida(bersaglio.getVicina(Direzione.SINISTRA))) 
+					if(this.sc.isValida(bersaglio.getVicina(Direzione.SINISTRA)))
 						System.out.println("a - PER ANDARE A SINISTRA");
-					if(this.sc.isValida(bersaglio.getVicina(Direzione.SOPRA))) 
+					if(this.sc.isValida(bersaglio.getVicina(Direzione.SOPRA)))
 						System.out.println("w - PER ANDARE SOPRA");
-					if(this.bersaglio.getX()==5 && this.bersaglio.getY()==0) 
+					if(this.bersaglio.getX()==5 && this.bersaglio.getY()==0)
 						System.out.println("w - PER PERCORRERE IL PASSAGGIO SEGRETO");
-					if(this.sc.isValida(bersaglio.getVicina(Direzione.SOTTO))) 
+					if(this.sc.isValida(bersaglio.getVicina(Direzione.SOTTO)))
 						System.out.println("s - PER ANDARE SOTTO");
-					if(this.bersaglio.getX()==1 && this.bersaglio.getY()==6) 
+					if(this.bersaglio.getX()==1 && this.bersaglio.getY()==6)
 						System.out.println("s - PER PERCORRERE IL PASSAGGIO SEGRETO");
-					if(this.bersaglio.getX()==5 && this.bersaglio.getY()==6 && this.sc.isVisibile(this.bersaglio) && this.chiave_maestra) 
+					if(this.bersaglio.getX()==5 && this.bersaglio.getY()==6 && this.sc.isVisibile(this.bersaglio) && this.chiave_maestra)
 						System.out.println("usare chiave maestra - PER APRIRE IL FORZIERE");
-					if(this.sc.isVisibile(this.bersaglio) && (sc.getPannello(this.bersaglio).hayElemento(provaTalpaGoffa) || sc.getPannello(this.bersaglio).hayElemento(provaTalpaCieca))) 
+					if(this.sc.isVisibile(this.bersaglio) && (sc.getPannello(this.bersaglio).hayElemento(provaTalpaGoffa) || sc.getPannello(this.bersaglio).hayElemento(provaTalpaCieca)))
 						System.out.println("parlare - PER INTERAGIRE");
-					if(this.pistola==true && munizioni==true && (!this.sc.isVisibile(this.bersaglio) || sc.getPannello(this.bersaglio).hayElemento(provaTalpaIntelligente) || sc.getPannello(this.bersaglio).hayElemento(provaTopo) || sc.getPannello(this.bersaglio).hayElemento(provaTopo1))) 
+					if(this.pistola==true && munizioni==true && (!this.sc.isVisibile(this.bersaglio) || sc.getPannello(this.bersaglio).hayElemento(provaTalpaIntelligente) || sc.getPannello(this.bersaglio).hayElemento(provaTopo) || sc.getPannello(this.bersaglio).hayElemento(provaTopo1)))
 						System.out.println("f - PER SPARARE");
-					if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(pruebaMunicion)) 
+					if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(pruebaMunicion))
 						System.out.println("prendere munizioni - PER PRENDERE LE MUNIZIONI");
 					if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaPistola))
 						System.out.println("prendere pistola - PER PRENDERE LA PISTOLA");
-					if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaMoneta)) 
+					if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaMoneta))
 						System.out.println("prendere monete - PER PRENDERE LE MONETE");
-					if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaNota)) 
+					if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaNota))
 						System.out.println("prendere nota - PER PRENDERE LA NOTA");
-					if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaChiaveMaestra)) 
+					if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaChiaveMaestra))
 						System.out.println("prendere chiave maestra - PER PRENDERE LA CHIAVE MAESTRA");
-					if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaChiave1)) 
+					if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaChiave1))
 						System.out.println("prendere chiave1 - PER PRENDERE LA CHIAVE 1");
-					if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaChiave2)) 
+					if(this.sc.isVisibile(this.bersaglio) && sc.getPannello(this.bersaglio).hayElemento(provaChiave2))
 						System.out.println("prendere chiave2 - PER PRENDERE LA CHIAVE 2");
 					if(this.munizioni==true && this.sc.isVisibile(this.bersaglio)) System.out.println("lasciare munizioni - PER LASCIARE LE MUNIZIONI");
 					if(this.pistola==true && this.sc.isVisibile(this.bersaglio)) System.out.println("lasciare pistola - PER LASCIARE LA PISTOLA");
@@ -1520,12 +1520,12 @@ public class Partita {
 					if(this.chiave1==true) System.out.println("lasciare chiave1 - PER LASCIARE LA CHIAVE 1");
 					if(this.chiave2==true) System.out.println("lasciare chiave2 - PER LASCIARE LA CHIAVE 2");
 					if(this.nota==true) System.out.println("leggere nota - PER LEGGERE LA NOTA");
-					System.out.println("b - PER TORNARE ALL'ULTIMA CASELLA VISITATA");	
+					System.out.println("b - PER TORNARE ALL'ULTIMA CASELLA VISITATA");
 					System.out.println("menu - PER METTERE IN PAUSA IL GIOCO");
 					System.out.println();
 				}
 			}
 		}
 	}
-	
+
 }
