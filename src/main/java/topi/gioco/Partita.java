@@ -1,6 +1,13 @@
 package topi.gioco;
 
-import java.util.LinkedList;
+import java.util.*;
+//aws
+import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.GetObjectRequest;
+import software.amazon.awssdk.services.s3.model.PutObjectRequest;
+import software.amazon.awssdk.services.s3.model.S3Exception;
 
 import topi.strutture.Direzione;
 import topi.strutture.Posizione;
@@ -28,16 +35,16 @@ import topi.elementi.TalpaGoffa;
 import topi.elementi.TalpaIntelligente;
 import topi.elementi.Topo;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
-import java.util.Random;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import java.nio.charset.StandardCharsets;
 
 public class Partita {
 	/* Costanti */
+	private final static String BUCKET_NAME = "gioco-edids";
+	private final static Region REGION = Region.EU_NORTH_1;
+
+	private S3Client s3;
 	private final static String IMAGE_BERSAGLIO = "immagini/bersaglio.png";
 	private final static String RUTA_FILE = "gameSaved/game_saved.txt";
 	private final static String IMAGE_INIZIO = "immagini/inizio.jpg";
@@ -74,6 +81,8 @@ public class Partita {
 	private Chiave provaChiave1;
 	private Chiave provaChiave2;
 	private Nota provaNota;
+	private ContributoGioco player;
+	private Scenario map;
 
 	/* Costruttori */
 
@@ -104,6 +113,24 @@ public class Partita {
 		this.provaChiave2 = new Chiave(0);
 		this.provaNota = new Nota(0);
 		this.provaTalpaIntelligente = new TalpaIntelligente();
+		Properties p = new Properties();
+		p.setProperty("aws.accessKeyId","AKIAVRUVWI5U6NCOXLUH");
+		p.setProperty("aws.secretAccessKey", "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");
+		//aws
+		/*AWSCredentials credentials = new BasicAWSCredentials(
+				  "<AWS accesskey>",
+				  "<AWS secretkey>"
+				h  );
+		AmazonS3 s3client = AmazonS3ClientBuilder
+				  .standard()
+				  .withCredentials(new AWSStaticCredentialsProvider(credentials))
+				  .withRegion(Regions.US_EAST_2)
+				  .build();*/
+		this.s3 = S3Client.builder()
+				 .region(REGION)
+				 .credentialsProvider(ProfileCredentialsProvider.create())
+				 .build();
+
 	}
 
 	public boolean spostareBersaglioUlt(){
@@ -1133,11 +1160,9 @@ public class Partita {
 					if(this.bersaglio.getX()==6 && this.bersaglio.getY()==4 && sc.getPannello(this.bersaglio.getX(),this.bersaglio.getY()+1).getStato()==Stato.SOLLEVATO){
 						System.out.println("Ti trovi davanti ad una porta blindata");
 						System.out.println("Da dietro senti una voce:");
-						System.out.println("TOPO GUARDIA: Hey so cosa vuoi fare, ma questa porta e' inespugnabile... però la mia mano potrebbe scivolare e aprirla per il giusto prezzo eheheh");
+						System.out.println("TOPO GUARDIA: hey so cosa vuoi fare, ma questa porta e' inespugnabile... però la mia mano potrebbe scivolare e aprirla per il giusto prezzo eheheh");
 						System.out.println();
-
-
-						if(monete){
+            if(monete){
 							System.out.println("Cosa vuoi fare?");
 							System.out.println("pagare - PER APRIRE LA PORTA, PAGANDO");
 							System.out.println("annulla - PER TORNARE INDIETRO");
@@ -1200,7 +1225,7 @@ public class Partita {
 							}
 						}
 						else {
-							System.out.println("davanti a te c'e' una porta, ma sembra essere chiusa a chiave... ha un numero 1 disegnato sopra");
+							System.out.println("Davanti a te c'e' una porta, ma sembra essere chiusa a chiave... ha un numero 1 disegnato sopra");
 							farlo = false;
 						}
 					}
@@ -1240,7 +1265,7 @@ public class Partita {
 							}
 						}
 						else {
-							System.out.println("davanti a te c'e' una porta, ma sembra essere chiusa a chiave... ha un numero 2 disegnato sopra");
+							System.out.println("Davanti a te c'e' una porta, ma sembra essere chiusa a chiave... ha un numero 2 disegnato sopra");
 							farlo = false;
 						}
 					}
@@ -1254,7 +1279,7 @@ public class Partita {
 				else if (cmd.equalsIgnoreCase("parlare") && this.sc.isVisibile(this.bersaglio) && ((this.bersaglio.getY()==6 && this.bersaglio.getX()==0 && chiave1==false) || (this.bersaglio.getX()==6 && this.bersaglio.getY()==0 && chiave2==false))){
 					if(this.bersaglio.getX()==0 && this.bersaglio.getY()==6){
 						sparare();
-						System.out.println("TALPA: 'Grazie per avermi liberato dal pannello! Ti prego, liberaci da GIORGIO TALPONI e dai suoi scagnozzi. Questa potra' servirti.'");
+						System.out.println("TALPA: 'Grazie per avermi liberato dal pannello! Ti prego, liberaci da Giorgio Talponi e dai suoi scagnozzi. Questa potra' servirti.'");
 						System.out.println("~La talpa se ne e' andata, lasciandoti qualcosa~");
 						PannelloBase pannelloChiave1 = sc.getPannello(this.bersaglio);
 						pannelloChiave1.addElemento(provaChiave1);
@@ -1262,7 +1287,7 @@ public class Partita {
 					}
 					else if(this.bersaglio.getX()==6 && this.bersaglio.getY()==0){
 						sparare();
-						System.out.println("TALPA: 'Grazie per avermi liberato dal pannello! Ti prego, liberaci da GIORGIO TALPONI e dai suoi scagnozzi. Questa potra' servirti.'");
+						System.out.println("TALPA: 'Grazie per avermi liberato dal pannello! Ti prego, liberaci da Giorgio Talponi e dai suoi scagnozzi. Questa potra' servirti.'");
 						System.out.println("~La talpa se ne e' andata, lasciandoti qualcosa~");
 						PannelloBase pannelloChiave2 = sc.getPannello(this.bersaglio);
 						pannelloChiave2.addElemento(provaChiave2);
@@ -1293,7 +1318,7 @@ public class Partita {
 						sparare();
 						System.out.println("TU: 'Beh, e' stato facile, in realta'...");
 						System.out.println();
-						System.out.println("Hai sconfitto la GIORGIO TALPONI, qualcosa gli cade dalla tasca...");
+						System.out.println("Hai sconfitto GIORGIO TALPONI, che ha lasciato cadere una nota misteriosa...");
 						// Anadimos nota
 						PannelloBase pannelloNota = sc.getPannello(this.bersaglio);
 						pannelloNota.addElemento(provaNota);
@@ -1454,21 +1479,22 @@ public class Partita {
 				else if (cmd.equalsIgnoreCase("menu")){
 					System.out.println();
 					System.out.println("MENU DI PAUSA:");
-					System.out.println("save - PER SALVARE IL GIOCO");
-					System.out.println("load - PER CARICARE IL GIOCO SALVATO");
+					System.out.println("save nomepartita.txt - PER SALVARE LA PARTITA");
+					System.out.println("load nomepartita.txt - PER CARICARE LA PARTITA SALVATA");
 					System.out.println("exit - PER USCIRE");
 					System.out.println("annulla - PER TORNARE INDIETRO");
 					System.out.println();
 
 					done2 = false;
 					String cmd2 = in.nextLine();
+					String[] words = cmd2.split(" ");
 					while (!done2){
-						if (cmd2.equalsIgnoreCase("save")){
-							salvaStato();
+						if (words[0].equalsIgnoreCase("save")){
+							saveGameToS3(words[1]);
 							done2 = true;
 						}
-						else if(cmd2.equalsIgnoreCase("load")){
-							caricaStato();
+						else if(words[0].equalsIgnoreCase("load")){
+							loadGameFromS3(words[1]);
 							done2 = true;
 						}
 						else if(cmd2.equalsIgnoreCase("exit")){
@@ -1481,8 +1507,8 @@ public class Partita {
 						else{
 							System.out.println("Comando non riconosciuto!");
 							System.out.println("MENU DI PAUSA:");
-							System.out.println("save - PER SALVARE IL GIOCO");
-							System.out.println("load - PER CARICARE IL GIOCO SALVATO");
+							System.out.println("save + nomepartita.txt - PER SALVARE LA PARTITA");
+							System.out.println("load + nomepartita.txt - PER CARICARE LA PARTITA");
 							System.out.println("exit - PER USCIRE");
 							System.out.println("annulla - PER TORNARE INDIETRO");
 							System.out.println();
@@ -1506,7 +1532,7 @@ public class Partita {
 							System.out.println("QUESTO E' UN PANNELLO PIU RESISTENTE. Chissa cosa si nasconde dietro...");
 						else if(this.bersaglio.getX()==3 && this.bersaglio.getY()==0)
 							System.out.println("QUESTO E' UN PANNELLO CON RESISTENZA ALEATORIA. Chissa cosa si nasconde dietro...");
-						else if(this.bersaglio.getX()==3 && this.bersaglio.getY()==6)
+						else if(this.bersaglio.getX()==3 && this.bersaglio.getY()==6) 
 							System.out.println("QUESTO E' UN PANNELLO CON RESISTENZA ALEATORIA. Chissa' cosa si nasconde dietro...");
 						else System.out.println("QUESTO E' UN PANNELLO DEBOLE. VIENE ABBATTUTO CON UN SOLO COLPO. Non dovrebbe esserci molto dietro...");
 					}
@@ -1572,5 +1598,82 @@ public class Partita {
 			}
 		}
 	}
+	private void saveGameToS3(String filename) {
+        try {
+            ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+            ObjectOutputStream out = new ObjectOutputStream(byteOut);
+            out.writeObject(player);
+            out.writeObject(map);
+            out.close();
+
+            byte[] bytes = byteOut.toByteArray();
+            s3.putObject(PutObjectRequest.builder()
+                            .bucket(BUCKET_NAME)
+                            .key(filename)
+                            .build(),
+                    software.amazon.awssdk.core.sync.RequestBody.fromBytes(bytes));
+
+            updateSaveList(filename);
+
+            System.out.println("Gioco salvato con successo su AWS S3.");
+        } catch (IOException | S3Exception e) {
+            System.out.println("Errore nel salvataggio del gioco: " + e.getMessage());
+        }
+    }
+
+    private void loadGameFromS3(String filename) {
+        try {
+            GetObjectRequest request = GetObjectRequest.builder()
+                    .bucket(BUCKET_NAME)
+                    .key(filename)
+                    .build();
+
+            InputStream inputStream = s3.getObject(request);
+            ObjectInputStream in = new ObjectInputStream(inputStream);
+            player = (ContributoGioco) in.readObject();
+            map = (Scenario) in.readObject();
+            in.close();
+
+            System.out.println("Gioco caricato con successo da AWS S3.");
+        } catch (IOException | ClassNotFoundException | S3Exception e) {
+            System.out.println("Errore nel caricamento del gioco: " + e.getMessage());
+        }
+    }
+
+    private void updateSaveList(String filename) {
+        try {
+            String saveListKey = "save_list.txt";
+            StringBuilder saveList = new StringBuilder();
+
+            try {
+                GetObjectRequest request = GetObjectRequest.builder()
+                        .bucket(BUCKET_NAME)
+                        .key(saveListKey)
+                        .build();
+
+                InputStream inputStream = s3.getObject(request);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    saveList.append(line).append("\n");
+                }
+                reader.close();
+            } catch (S3Exception e) {
+                System.out.println("Nessuna lista di salvataggi trovata, creando una nuova.");
+            }
+
+            saveList.append(filename).append("\n");
+
+            s3.putObject(PutObjectRequest.builder()
+                            .bucket(BUCKET_NAME)
+                            .key(saveListKey)
+                            .build(),
+                    software.amazon.awssdk.core.sync.RequestBody.fromString(saveList.toString(), StandardCharsets.UTF_8));
+
+            System.out.println("Lista dei salvataggi aggiornata.");
+        } catch (IOException | S3Exception e) {
+            System.out.println("Errore nell'aggiornamento della lista dei salvataggi: " + e.getMessage());
+        }
+    }
 
 }
