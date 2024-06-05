@@ -1,0 +1,46 @@
+SSD DELLA USER STORY "INTERAGIRE CON UN PERSONAGGIO"
+
+link immagine:
+
+https://www.planttext.com/api/plantuml/png/pPH1Ri9034NtEOLtNN415bMlOWP3BKtiaUqWmObwZrwida0HGe2WgowIXSV-__jbb0yFj9Z6EWnOGWrQnJtPCBGiS-664k1x3ngpDf_1ulrKWIMmE1bx8IWwegmLl6bgZYIXgLbZ0FXjN-JaIMC981gyuO8Gt1JIIAXMlMo_w1vJr13mm2eCQquNuHLN7gWw0PcfKTPXXH4Sa-5Dt-KvfgY0SL5HBpp5JT-7jh8Ugcg33Klv9E1wNc7MTWRJiL7NlUPs2rlB1a_eQFF82ToZK6UxOxhU_eZ5wpXU9DBz4qf_CZsKj-ylcAGlvYgutRBU-IIusx7dFaPESi1x4qzcU1OsIv3Xbk_nll0pFbxgwsJ_0dVFqELctaBka_pfCd_aA_y3Fm00
+
+versione testuale:
+
+@startuml
+
+actor player
+
+participant system
+
+player -> system : inserisce comando spostamento
+
+alt
+   system --> player :  notifica tipo pannello
+   system -> player : mostra azioni disponibili
+else errore di battitura
+   system --> player: comando non riconosciuto
+   system -> player: mostra azioni disponibili
+end
+loop finche il pannello non si rompe
+   player -> system: inserisce comando per sparare
+   alt
+      system -> player: mostra pannello azioni
+   else errore di battitura
+      system --> player: comando non riconosciuto
+      system -> player: mostra azioni disponibili
+   end
+end
+alt c'è un personaggio
+   system --> player: avvisa presenza personaggio
+   system -> player: mostra azioni disponibili
+   player -> system: inserisce comando per interagire
+   alt
+      system --> player: risposta personaggio
+   else errore di battitura
+      system --> player: comando non riconosciuto
+      system -> player: mostra azioni disponibili
+   end
+else non c'è nessuno
+   system -> player: mostra azioni disponibili
+end
+@enduml
