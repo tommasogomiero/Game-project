@@ -7,7 +7,6 @@ import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.S3Exception;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
-//import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 
 import topi.strutture.Direzione;
 import topi.strutture.Posizione;
