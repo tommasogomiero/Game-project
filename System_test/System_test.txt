@@ -1,0 +1,87 @@
+1)as a player, I want to pick up an item so that i can use it:
+
+- enter the command to move, for example 's' to go down
+
+- the system notifies the type of panel the player has ended up on, by printing, for example, "QUESTO E' UN PANNELLO DEBOLE. VIENE ABBATTUTO CON UN SOLO COLPO. Non dovrebbe esserci molto dietro..."
+
+- the system shows the available actions, for example "w - andare avanti, d - andare a destra, s - andare sotto, a - andare a sinistra, menu - aprire il menu, f - per sparare, lasciare pistola - lasciare la pistola, lasciare munizione - lasciare le munizioni"
+
+- the player enters the command to shoot until the panel breaks(one time in this case)
+
+- the system warns if there is an item under the panel and shows the available actions for example "Per terra si trova una chiave d'argento..." and the sistem add to the previous ones prendere chiave1 - prendere la chiave 1
+
+- the player enters the command to pick up the item(prendere chiave1 in this case
+
+- if the backpack is full the system warns the player, otherwise it collects the item, for example if we have 3 items already the system will print "Lo zaino è pieno. Non puoi tenerle..."
+
+- if there is a typing error the system warns the player and asks for the command again: "Comando non riconosciuto!" and the player will re-enter the command
+
+
+2)as a player, i want to open a door so that i can enter a specific room
+
+- enter the command to move, for example 'w' to go up
+
+- if the player does not have the item to open the door, the system warns that there is a blocked door, for example: "Davanti a te c'e' una porta, ma sembra essere chiusa a chiave... ha un numero 2 disegnato sopra"
+
+- if the player has the item to open the door, the system tells the user he can use that item, and asks him if he wants to open that door by printing, for example, "usare chiave2 - PER APRIRE LA PORTA 2 ,  annulla - PER TORNARE INDIETRO"
+
+- the player enters the command to open the door, like "usare chiave2"
+
+- the system warns that the door has unlocked, by printing "La porta si apre..."
+
+- the system unlocks the door and moves the player to that place, for example by putting him a panel forward
+
+- if there is a typing error the system warns the player and asks for the command again, for example "Comando non riconosciuto..." and the player will re-enter the command
+
+
+3)as a player, I want to interact with a character so that i can continue with the story:
+
+- enter the command to move, for example 'w' to go forward
+
+- the system notifies the type of panel the player has ended up on, for example "QUESTO E UN PANNELLO PIU' RESISTENTE. Chissa' cosa si nasconde dietro..."
+
+- the system shows the available actions, for example "d - andare a destra, s - andare sotto, menu - aprire il menu, f - per sparare, lasciare pistola - lasciare la pistola, lasciare munizioni - lasciare le munizioni"
+
+- the player enters the command to shoot until the panel breaks(two times in this case)
+
+- if there is a character, the system warns the player, by printing, for exaple, "Sotto al pannello che hai appena distrutto era intrappolata una talpa. Speriamo che ti sia riconoscente..."
+
+- the system shows the available actions, so in this case it will add to the other options "parlare - PER INTERAGIRE"
+
+- the player enters the command to interact with the character, "parlare"
+
+- if there is a typing error, the system warns the player and asks for the command again: "Comando non riconosciuto!" and the player will re-enter the command
+
+
+4)as a player, I want to save the game so that i can stop playing without losing progress
+
+- the system show the available actions, like "w - andare avanti, d - andare a destra, s - andare sotto, a - andare a sinistra, menu - aprire il menu, f - per sparare, lasciare pistola - lasciare la pistola, lasciare munizioni - lasciare le munizioni"
+
+- the player enters the “menu” command
+
+- the system opens the menu, prints: “save”, “load”, “exit”, “annulla”
+
+- the player enters the command “save gamename”
+
+- the system saves the game file on the AWS Cloud, for example the game 'pizza'
+
+-the system notifies the player the game has been saved succesfully, by printing, in this case: "La partita 'pizza' e' stata salvata con successo su AWS S3."                                                                                        
+-if there is a typing error, that being a command like "save" or "savr pizza" the system warns the player and asks for the command again, like this:  "Comando non riconosciuto!" "\n" "save nomepartita - PER SALVARE LA PARTITA"
+
+
+5)as a player, I want to load a game so that i don’t lose the progress i’ve made
+
+- the system shows the available actions, like "w - andare avanti, d - andare a destra, s - andare sotto, a - andare a sinistra, menu - aprire il menu, f - per sparare, lasciare pistola - lasciare la pistola, lasciare munizioni - lasciare le munizioni"
+
+- the player enters the “menu” command
+
+- the system opens the menu, printing: “save”, “load”, “exit”, “annulla”
+
+- the player enters the command "load gamename”
+
+- the system loads the game file from the AWS Cloud, for example the game 'pizza'
+
+- the system notifies the player the game has been loaded succesfully, by printing, in this case: "La partita 'pizza' e' stata caricata con successo su AWS S3."
+
+- if there is a typing error the system warns the player and asks for the command again, like this:  "Comando non riconosciuto!" "\n" "load nomepartita - PER CARICARE LA PARTITA SALVATA"
+
