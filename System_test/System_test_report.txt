@@ -1,0 +1,22 @@
+A seguito di numerosi test eseguiti sulla classe Partita(la classe fondamentale per coordinare il gioco) abbiamo riscontrato vari errori che abbiamo mano a mano risolto: ci siamo concentrati soprattutto sul verificare il riscontro visivo delle varie azioni sulla finestra del tabellone, e sul corretto salvataggio/caricamento su/da il bucket di aws.
+
+1. Prima di tutto, abbiamo notato che lasciando un oggetto sotto a un pannello non già distrutto, tale oggetto sarebbe scomparso. Era un bug grave, dal momento che non poter più accedere anche a solo un elemento di quelli non ancora utilizzati, preclude la possibilità di terminare la partita.
+
+2. Sempre lasciando un oggetto su una casella, nel momento in cui c'era un altro oggetto sopra, talvolta uno dei due avrebbe coperto l'altro, ma il problema era dovuto al fatto che per alcune immagini erano stati usati dei file jpg/jpeg al posto di png, quindi era un problema minore.
+
+3. Testando il metodo sparare, invece, non abbiamo riscontrato problemi: dopo il numero di colpi previsti l'elemento scompariva dal tabellone fin da subito.
+
+4. Allo stesso modo, per spostare il bersaglio, non abbiamo riscontrato bug, e le direzioni disponibili stampate dal sistema rispecchiavano la posizione del bersaglio. Anche il passaggio segreto corrispondente alle due frecce funzionava.
+
+5. Passando alle azioni di load/save con aws, ci sono stati più problemi. All'inizio, nonostante l'aver cambiato le variabili d'ambiente e le java system properties settandole con le key generate da aws, il programma eseguiva, ma non in modo corretto, dopo un operazione di save/load. Questo perché non avevamo un oggetto Serializable che rappresentasse lo stato di una partita, perciò abbiamo dovuto crearlo. Così il save/load è stato implementato.
+
+6. Da qui però è sorto un altro problema, cioè che le operazioni di load/save funzionavano solo se prima venivano cambiate le variabili d'ambiente a quelle del profilo aws che abbiamo utilizzato per testare. Questo perché avevamo utilizzato un metodo della documentazione di aws che non andava a controllare le java system properties, ma solo le variabili d'ambiente. Dopo aver utilizzato un nuovo metodo il problema è stato risolto e abbiamo implementato la richiesta della consegna di leggere le credenziali da file di testo, cosa che prima non avevamo fatto.
+
+7. Un altro problema riscontato durante il test di save/load è il seguente: dopo aver salvato una partita su aws, in modo corretto, e dopo aver eseguito un po' di azioni come muoversi e sparare, se provavamo a caricare una partita non esistente nel bucket notavamo che si tornava all'ultimo salvataggio appena eseguito: era dovuto a un try/catch non implementato perfettamente.
+
+NOTE:
+- dal momento che inizialmente questo gioco era nato come un gioco dinamico, con un timer e dei punti, rappresentati dalla clase ContributoGioco: questa, nonostante non venga più utilizzata, è però necessaria per il metodo aggiornare, che aggiorna la finestra con il tabellone: è quindi presente una classe ContributoGioco con un solo costruttore, vuoto, che però viene ritornato dal metodo catturare di Scenario.
+Inoltre, per gli oggetti che estendono ElementoAttivo è presente la funzione puoMuoversi(), che con la nuova versione più statica del gioco abbiamo reso superflua.
+Per motivi di tempo non siamo riusciti a sistemare queste due inconvenienze,  che non alterano il funzionamento del programma, ma lo rendono un po' più corposo inutilmente
+
+CONCLUSIONI: il principale ostacolo è stata l'implementazione del load/save, soprattutto capire come funzionavano i vari metodi e i vari oggetti builder di aws, come ci aspettavamo, non avendo avuto esperienze pratiche in precedenza con questo strumento. In generale, i problemi non sono stati difficili da sistemare, tranne appunto quelli riguardanti aws, che sono stati un po' più impegnativi da capire e poi risolvere. 
