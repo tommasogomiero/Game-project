@@ -1,0 +1,150 @@
+link immagine:
+
+https://www.planttext.com/api/plantuml/png/tLZ1RjmW4BtlLt3SFIHIVTn33wsgA8T8bL9LpN7Mfhj862p3Hac_gF_H7oi6ZC76699BrKEoAtZp66Q6UQE5Ml8UtH5UW_g2TntqajIa0oRHr-6xX63jiSOCUi9381Va5-4CtvvmB-1Cv_l06AQKtxRGTI7VDzxn3ukLAbm1si4zaug2dB7wt44joJD8x5nq2yw_2H9nphCFFDjPFdJpqJ4T4H7VYI0dGl4-GdROZSY55L3IGDnc1rGYsL_n3Y7VFW8-eZEMF_O7XOpieflWr9TClgTCljSvNn2m83RgKWWDrsASeJ-_4PnE8ELLShMCPeRX8JrHjSS0_GGgi4PFH-epTL9YE2zVgv4pm9MRBhXVSdcVodXVDNm8JytxdeYEimOZG9sD2ph1_4wAnZtC8nAywsDmh6AnnWaK3zR4f22NEhHAyJVun2ak8lTCKimz5aH8_TXBs6Tcc3NpT7gszONWPl2W1TQOoxhTC8aMWeHgIz0lIs_4NPGhwdnE8GLfhqpN374bSG4o6Y8ysmzeyfkICNrBQpAMtaD-jWVPdV1UnklZ69gztJjCO7ilFmX4tBCxQF5-WWtdgRC8GsUL0-xMumJg_JtMddLO7ywfyV69KHKsMJyvZSYaxhZmX2NANvgqPGCS3vqQttyN6gCMkCUZKEH7gBIq5_6TpAqYnyv8AxExMvP2b_0_5VA_hl7FbDi5tECV--NqpNpgJZsJz90FnHLzCU7uDMKte-rDNNoh42Aan_b0D-l1OGGkyFg5ubQf1T_hEVHGXgzAyFCPzc279HLO9GbNDYWZGSqL8ycxIHcade-NZysJiI6BJCT7evUYeUzsH0q1oi_SfbkdLEfP-_tirO8zARmj5rAfjb5LKYgyBch_d6PkDvMoXfBVJCeQINuJoHxznwWdUe8NXe818cjyM1iUSlInJ1spjV4DolYkaI4-C0Hw5kMlXuPk0f-YNrE6x2urFDThNHF1qrsAWgY9SkT1EI8NrQ11YNJwXrl23eHO93BAuvAuJJTFdiTdNe1nNuMtnp0MwVn71uD9UMI3iEbEky8K-W9Du_J8hAs7LM4d_Gru5ixurIHysOwQ5ObFLj5KEKLJ5HHDbIYQ1SzsqLIfegdyH7s-47Z63u07UKpNJW1D-HS0jtsiDHorQyHHHzE5LMqMLa1NN5yHQpkrgl_gxoy0
+
+versione testuale:
+
+actor Giocatore
+participant Partita
+participant Scenario
+participant Posizione.bersaglio
+participant Pannello.mappa
+participant Topo1
+participant Topo2
+participant TalpaIntelligente
+activate Partita
+activate Scenario
+activate Posizione.bersaglio
+activate Pannello.mappa
+
+Partita -> Scenario: isVisibile(Posizione.bersaglio)
+Scenario -> Scenario: isValida(Posizione.bersaglio)
+
+alt true
+  Scenario -> Posizione.bersaglio: getX()
+  Posizione.bersaglio --> Scenario: x
+  Scenario -> Posizione.bersaglio: getY()
+  Posizione.bersaglio --> Scenario: y
+  Scenario -> Pannello.mappa: isVisibile()
+
+  alt non è abbattuto
+    Pannello.mappa--> Scenario: ritorna false
+    Scenario --> Partita: ritorna false
+    Partita -> Posizione.bersaglio: getX
+    Posizione.bersaglio --> Partita: ritorna x
+    Partita -> Posizione.bersaglio: getY
+    Posizione.bersaglio --> Partita: ritorna y
+    alt corrisponde a pannello base
+    Partita --> Giocatore: sopra pannello base
+    else corrisponde a pannello aleatorio
+      Partita --> Giocatore: sopra pannello aleatorio
+    else corrisponde a pannello debole
+      Partita --> Giocatore: sopra pannello debole
+    else corrisponde a pannello resistente
+      Partita --> Giocatore: sopra pannello resistente
+    end
+    Partita -> Giocatore: chiede comando
+    Giocatore --> Partita: comando sparare
+    Partita -> Partita: ha pistola
+    Partita -> Partita: ha munizioni
+    alt hai pistola e munizioni
+      Partita -> Scenario: isVisibile(Posizione.bersaglio)
+      Scenario -> Scenario: isValida(Posizione.bersaglio)
+      alt non è visibile
+        Partita -> Pistola: sparare(Partita)
+        Pistola -> Partita: isInGame()
+        alt è in gioco
+          Pistola -> Partita: getSc()
+          Partita --> Pistola: ritorna scenario
+          Pistola -> Partita: getBersaglio
+          Partita --> Pistola: ritorna pos.bersaglio
+          Pistola -> Scenario: isVisibile(Posizione.bersaglio)
+          Scenario --> Pistola: false
+          Pistola -> Partita: getSc()
+          Partita --> Pistola: ritorna scenario
+          Pistola -> Partita: getBersaglio
+          Partita --> Pistola: ritorna pos.bersaglio
+          Pistola -> Scenario: abbatterePannello(Posizione.bersaglio)
+          Scenario -> Scenario: isValida(Posizione.bersaglio)
+          Scenario --> Scenario: true
+          Scenario -> Posizione.bersaglio: getX()
+          Posizione.bersaglio --> Scenario: x
+          Scenario -> Posizione.bersaglio: getY()
+          Posizione.bersaglio --> Scenario: y
+          Scenario -> Pannello.mappa: abbattere()
+        end
+      end
+    end
+  else è abbattuto
+  Pannello.mappa --> Scenario: ritorna true
+  Scenario --> Partita: true
+  Partita -> Scenario: getPannello(Posizione.bersaglio)
+  Scenario --> Partit: Pannello.mappa
+  Partita -> Pannello.mappa: hayElemento(Topo1)
+  Partita -> Pannello.mappa: hayElemento(Topo2)
+  Partita -> Pannello.mappa: hayElemento(TalpaIntelligente)
+  alt se ha uno dei due topi
+    alt topo1
+      Partita --> Giocatore: attenzione topo
+      Partita -> Topo1: dialogo()
+    else topo2
+      Partita --> Giocatore: attenzione topo
+      Partita -> Topo2: dialogo()
+    end
+    Partita -> Giocatore: mostra comandi
+    Giocatore --> Partita: comando sparare
+    alt se hai pistola e munizioni
+      Partita -> Scenario: isVisibile(Posizione.bersaglio)
+      Scenario -> Scenario: isValida(Posizione.bersaglio)
+      Scenario --> Scenario: true
+      Scenario -> Posizione.bersaglio: getX()
+      Posizione.bersaglio --> Scenario: x
+      Scenario -> Posizione.bersaglio: getY()
+      Posizione.bersaglio --> Scenario: y
+      Scenario -> Pannello.mappa: isVisibile()
+      Pannello.mappa --> Scenario: true
+      Partita -> Pistola: sparare(Partita)
+      Pistola -> Partita: isInGame()
+      alt è in gioco
+        Pistola -> Partita: getSc()
+        Partita --> Pistola: ritorna scenario
+        Pistola -> Partita: getBersaglio
+        Partita --> Pistola: ritorna pos.bersaglio
+        Pistola -> Scenario: isVisibile(Posizione.bersaglio)
+        Scenario --> Pistola: true
+        Pistola -> Scenario: catturare(Posizione.bersaglio)
+        end
+      end
+    end
+    alt topo1
+      Partita --> Giocatore: hai ucciso topo
+      Partita -> Topo1: lasciareMonete(Partita)
+      Topo1 -> Partita: getSc()
+      Partita --> Topo1: passa scenario
+      Topo1 -> Partita: getBersaglio()
+      Partita --> Topo1: passa bersaglio
+      Topo1 -> PannelloMonete: crea
+      activate PannelloMonete
+      Topo1 -> Partita: getMonete()
+      Partita --> Topo1: passa monete
+      Topo1 -> PannelloMonete: addElemento(Monete)
+      Topo1 -> Partita: addPannello(PannelloMonete)
+      Partita -> Scenario: setPannello(PannelloMonete)
+      
+    else topo2
+      Partita --> Giocatore: hai ucciso topo
+      Partita -> Topo2: lasciareMonete(Partita)
+      Topo2 -> Partita: getSc()
+      Partita --> Topo2: passa scenario
+      Topo2 -> Partita: getBersaglio()
+      Partita --> Topo2: passa bersaglio
+      Topo2 -> PannelloChiaveMaestra: crea
+      activate PannelloChiaveMaestra
+      Topo2 -> Partita: getChiaveMaestra()
+      Partita --> Topo2: passa chiave maestra
+      Topo2 -> PannelloChiaveMaestra: addElemento(Monete)
+      Topo2 -> Partita: addPannello(PannelloChiaveMaestra)
+      Partita -> Scenario: setPannello(PannelloChiaveMaestra)
+    end
+  end
+end

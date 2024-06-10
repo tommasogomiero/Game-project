@@ -1,0 +1,54 @@
+link immagine:
+
+https://www.planttext.com/api/plantuml/png/pLLDQyCm3BtxL-ZO7ReVaCDWesFqieObzAuw8WWoEzXQ2_lrizlcgqjQo2cd2ElfwKaF4THY7NomrHW2KZKwOSqr6e4qneB3D-lvbwsXvmCvZsN5Lg4MFg9GMz0zZA3L5GNhbwvl0j_MYqF026SesDVXU-2A5LO2XO8E3EjGUcL9pgaUvKZBf2JPXm4ChZRiw9BTl6Vvr-jJBFvVCIGwdciJq8uGR1dOn4BTf45R0rx8-nXQLmIiq83tGZ1E6kRqWevM3mJrHtOSrX08Rzc6cyWq6NHXV62_nugBrIq-DelR5VSJ1G_ts3Hh1BurMdfAoHIAgZ2ud_R7p_Cds-NvRa7stDUp87TQeQqvE6qEpZHd-xbTsFaybBGaYtfQMvTEqowTvfvGkYoBxkfPr0cbFNDC_CE4wZy0
+
+versione testuale:
+
+actor Giocatore
+participant Partita
+participant Posizione.bersaglio
+activate Partita
+activate Posizione.bersaglio
+
+Partita -> Giocatore: mostra azioni disponibili
+alt d
+  Giocatore --> Partita: d
+  Partita -> Posizione.bersaglio:getVicina(Direzione.DESTRA)
+  Posizione.bersaglio -> Posizione.vicina: crea oggetto posizione con stesse coordinate
+  Posizione.vicina -> Posizione.vicina: spostare(DESTRA)
+  Posizione.bersaglio --> Partita: ritorna Posizione.vicina
+  Partita -> Scenario: isValid(Posizione.vicina)
+  alt true
+    Partita -> Partita: spostareBersaglio(DESTRA)
+  end
+else s
+  Giocatore --> Partita: s
+  Partita -> Posizione.bersaglio:getVicina(Direzione.SOTTO)
+  Posizione.bersaglio -> Posizione.vicina: crea oggetto posizione con stesse coordinate
+  Posizione.vicina -> Posizione.vicina: spostare(SOTTO)
+  Posizione.bersaglio --> Partita: ritorna Posizione.vicina
+  Partita -> Scenario: isValid(Posizione.vicina)
+  alt true
+    Partita -> Partita: spostareBersaglio(SOTTO)
+  end
+else a
+  Giocatore --> Partita: a
+  Partita -> Posizione.bersaglio:getVicina(Direzione.SINISTRA)
+  Posizione.bersaglio -> Posizione.vicina: crea oggetto posizione con stesse coordinate
+  Posizione.vicina -> Posizione.vicina: spostare(SINISTRA)
+  Posizione.bersaglio --> Partita: ritorna Posizione.vicina
+  Partita -> Scenario: isValid(Posizione.vicina)
+  alt true
+    Partita -> Partita: spostareBersaglio(SINISTRA)
+  end
+else w
+  Giocatore --> Partita: w
+  Partita -> Posizione.bersaglio:getVicina(Direzione.SOPRA)
+  Posizione.bersaglio -> Posizione.vicina: crea oggetto posizione con stesse coordinate
+  Posizione.vicina -> Posizione.vicina: spostare(SOPRA)
+  Posizione.bersaglio --> Partita: ritorna Posizione.vicina
+  Partita -> Scenario: isValid(Posizione.vicina)
+  alt true
+    Partita -> Partita: spostareBersaglio(SOPRA)
+  end
+end

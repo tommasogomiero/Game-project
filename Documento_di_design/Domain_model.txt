@@ -1,0 +1,36 @@
+link immagine:
+
+https://www.planttext.com/api/plantuml/png/TL91JiGm3Bpd5LQFIAsAW0Cze9KuS0BwXIXh1KjfKYKk4j_Y2tmCPxURPgNkoV5uCcCxEIJMaPV9AVHC_0C0RnICvX1nWqRX46jbd4v9SdZNyrobe_OUdGiLWZ45hwsb2loq5fahu6DyLQhuGNFVGDk-dE9g2GFON5Vg0jIaKnj2-PBw-LogZyzDQMi04wOvoAXmr3SDjuuXN_0SWtFPk2hicIU2QGdVc5iy-ssqlkkwk-Oo-AfBw7V94cKXLvmzwxvzA8e3pClVBx2mvRsKNB-IAwn8id93jwRfswVLcpnZr9QI4Ra3-cF-6keV
+
+versione testuale:
+
+@startuml
+entity   Giocatore
+entity   Partita
+class    Mappa
+class    Pannello
+class    Personaggio
+class    Oggetto
+class    NPC
+
+Giocatore "1" --> "1" Partita : gioca
+
+Partita "1" --> "1" Mappa : ha
+
+Mappa "1" --> "49" Pannello: composta da
+
+Giocatore "1" --> "1" Personaggio : controlla
+
+Personaggio "1" --> "1" Mappa : si muove
+
+Pannello "1" --> "0...*" Oggetto : contiene
+
+Pannello "1" --> "1" NPC: contiene
+
+Personaggio "1" --> "0-3" Oggetto: può tenere
+
+NPC "1" --> "1" Oggetto: rilascia
+
+Personaggio "1" --> "0-5" NPC: interagisce
+
+@enduml

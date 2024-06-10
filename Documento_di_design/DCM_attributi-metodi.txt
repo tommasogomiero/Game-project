@@ -1,0 +1,407 @@
+link immagine
+
+https://www.planttext.com/api/plantuml/png/rHdPRXityDd-YWNw8iF9WvJ75W7MqbhPGjQgEbmhGM1GArfcirggUxY9W_nB_wK_rk6roqj73XIeNaGEXvo3St4MhSggG6aLf1agoo3Ay1Rd5Vry7WGlToZFSPRHArJYG4rWuL9XTIxO30uW-IQew8mF112fSvyeMGTeio6qo561ExCKmp-XGPboH8F81bSJEHV7yDsb1ftuU38fIdxWh7YBDXWE-d9-ZlnoXbL5dhYqFwqepJ3AWt97oufnkYO5VYOqnm6CNW2_1kC_cHAk2SheXd9Y5gqvodReN1lt2KuHrp0GgaWQF90SPO5GNn3VXCFeVXwE9k5zFuxw8HDECRUhwGrzmaL974LQR2W8a4q9IZQWZegfhwX8XO8DscAECsY410IOpBZqudPj2ZEFOZMnXlJXuJInXidrzVz6h3YlmCR81lRYawIBn_DeD8g74Vn_av1dfqWPdFr0EUcE7XCjcIH1mzSUVxOPlm76AcpoRUFq7mbwmZS8Cv-nH3oaceAaZmGs8HCel7T2ImAE3Mk1kpZ66oGNMu5s1MXoGeiAkSRaKzo-W3A1YOmeBuKQILu5VzOePsVgmLDYThJrV_w-yAdOYZoNR0SmyviyLBj8eSmZLzb_4uUtt385-buEMfqiSe-FsKY36f-cEvrNUV6VMtQKAJXSdIIInjGrBPu9Bcoc57rkd8Am67hqu79_a8sRP1pDmvP2dHFcd4GGKRCVG6SnZj_6oJWEWeROX9GLpOGySlpzX2RnR9wCmZOJentQgz0nbUfaW--dFKuqLSvnIGlkLPTY-FtdpwDPCasOAqjxf3aih-gA3WbDRG_UrK391AKqsrcW9-dZqaCdR5D7zza-ssD0RaqFbghLg4i93Dwlekai78xYv31QpCtaC4vq5yyPXWIkwlG3hiPmiHgmm12BSWvurSy8HA-WVCMdRMIoflSGuse6Ow5OPAWLf3wqoGZT0xwliuejgNo9Fn9Z_XV9zUbE6BaEsl9yeqDI7bBkjoAc6BZA7LtqhWlgwQ2Sybj-oMxm6P6S2zIuTx0hQhn2R9vAhKb_X1NwX2Ojtopl2Y0RkP2k2nhMg81io1UQeaikD_DcbLUQsYgVSsvvn1ChOjpiqUiTRQiEPhX6i1Pu1gZ5qHUxVZ1NBmiR0ZYM2ex0ODVqrnflQ83vc4StuI8y0cIes3pYvsVqWliVoYeskT3BBbNFNu6TOMPdYwpg7CRej6NL4rnYZhnfMGEkroSyK6nKXd43Nd9WI-DG42XcgQ3OUWu0hvJpY3MfMHPe-8ZbRUy2ozNU1PLzBrGWPqiye5yqcPAZozhEK2I08t3QZYySMvnQgp5t7k_IxoJtmbjAwf6eaGYyS7Rpp4m-2clvn7UFIFu1hqVWbR_4MpYOvFYr828cojmCIKaPvpnDQ1nWaw6_5DzyjYimJvqwPs1p-WPW2HT0KfhMIvbnd_0Gel6Spbvrf0PokcM7CQvQn8oYDKEyBkZs26gzMwCAp-1a9hL2VI0Pvd5VfIAb02qNILJ2z6zcle_cz1EJIXtGqRS9rHitu4lSAZtU6RCbovI1IfK5tHG8QF2omCXm37qKJeTlehTlm_j1T1qkHdClLZYQ7yKPn3VHU0RrLdJ_ss8mJVOYGtQdHT1FHiaqseiafPs7K5hTByR9OOJ18d8GHZJz46JdlFN20VnMjv290gdgT-y328mbVwXmitf0AGvck81t57b6gmoVD_L66tkE51sJS3o6XwrMJpICQEaSOYaHfGEgA3-79pRDozG3w7M0nOY8gDuoqd5jn5W-5cDNArHLs0ZH9Sqo_6I6xIrbeOwnxW0vzmxKZ04Gofj6c1fmaGoi0c_XqNy2uYFwT03hM1jDqwzLoBuEKj16NVXs6RcaLOIuEvPpMZLuBv05V7c7tXZjRFL5M6As_DeGUqjAieAeP1ojjHc_M3OSmhwAWdYd6_AbizTC487Fg8B_oyz_8xRQ1dW56lzgvzS3v69g1L4NfnzD4rKqa-qET4b-DdF6kYvOyVRpcNulWZdZKbxes1TdPyVmzrpYCQyIvnvNtnINODbDT_0_KA6hCezYBrt-3cdnX1tVgCSJhP1LmaSK-7iyrjdajRFBu7vILnbDqsF1uMgKzFiyD0Xqjs3SJ-0wm-aZwXwXS3sA-czuJqNYVps9tbUIw7qDYL6Tfe-iuNo4I3yS3yB1zvbpSBezDsmTCsC_ejzwJqcj1soNjJsFUNqodOS_tkKj3ObaNiXNiLyvVfp3PTCtgaLM5PyLbn_Lu9DHTRYCj4jQHLb3hN7uJM2NChVyrQuzuzUaq6f1zOMFdS0cTu85DbnwqFOSezU4Rd5Yi9JI7K6pUWU5E726L4cZ8MHCvaQiHrG-zkdQUbxZFskKbPrazGTEgu2k_hWuRtIkRgTHUTCPKG3P6-7LkgT-9k_Ultj_hlKSk7PaNsLbLsRmZ5WZ_Oxy27v3E_Gz5sVoausd3BJ9cLRR7gcXdRaF02-Up-1LQN5QQMs-W7G37QcRCCms5DVHCLElynNS3667SMs1V1KpvCnjmCjwCMniMpq8jPwR-nq9h7G3ryUUaRViGoRD5_506LZJoBrp84i7iiWg5ms03IO8zbRrLbjRcBXDNrBUE6rVKZgzI0tTr_bLExe-OCy4ZhN-h-n2DxA85dGpJNKsMYJ5WONNjUQzPivQpdSMpQL9S-cbkNHeMdXTQzvRwZINfkHDKze4zLpGAnCqHHNgkY1z8ui_JJ1YvgjPeljTKPf8qzepSq83Nlh1pFhshfXxXj8ExSUf-iPcWNrjKSiQdItDXq7lhguVtBF1RPDMVNsIfca01NycpE3EGcyirREZwmFsJ23Zwix7rjB3rd8_Mqi_MxuTNH-mjtJOMjeQvDRj0pgwvXPk0xcD-u3cTcxdRTXcj_xbNm00
+
+versione testuale:
+
+abstract class Elemento{
+  -pannelloBase pannello
+  +Elemento()
+  +string toString()
+  +abstract void aggiornare(Scenario sc)
+  +pannelloBase getPannello()
+  +void setPannello(PannelloBase pannello)
+  +abstract string getImage()
+}
+
+abstract class ElementoAttivo{
+  #boolean spostare(direzione dir, scenario sc)
+  #abstract void dialogo()
+}
+abstract class Talpa
+class TalpaCieca{
+  -static final String IMAGE_TALPA_CIECA
+  +boolean puoMoversi(Scenario sc)
+  +void dialogo()
+  +void lasciaOggetto(Partita game)
+  +Direzione getDirSpostamento(Scenario sc)
+  +String getImage()
+}
+class TalpaGoffa{
+  -static final String IMAGE_TALPA_GOFFA
+  +boolean puoMoversi(Scenario sc)
+  +void dialogo()
+  +void lasciaOggetto(Partita game)
+  +Direzione getDirSpostamento(Scenario sc)
+  +String getImage()
+}
+class TalpaIntelligente{
+  -static final String IMAGE_TALPA_INTELLIGENTE
+  +boolean puoMoversi(Scenario sc)
+  +void dialogo()	
+  +void lasciaOggetto(Partita game) 	
+  +Direzione getDirSpostamento(Scenario sc)
+  +String getImage()
+}
+class Topo{
+  -static final String IMAGE_TOPO 
+  +void aggiornare(Scenario sc)	
+  +void lasciaMonete(Partita game)	
+  +void lasciaChiaveMaestra(Partita game) 
+  +void dialogo()	
+  +void richiesta()	
+  +void rispostaPositiva() 	
+  +void rispostaNegativa() 
+  +void aprirePorta(Partita game)
+  +String getImage()
+}
+
+abstract class ElementoPassivo{
+  -final int quantita
+  +ElementoPassivo(int quantità)
+  +void aggiornare(scenario sc)
+  +int getQuantita()
+}
+class Chiave{
+  -static final String IMAGE_CHIAVE
+  +Chiave(int quantità)
+  +void aprirePortaUno(Partita game)
+  +void aprirePortaDue(Partita game)
+  +String getImage()
+}
+class ChiaveMaestra{
+  +ChiaveMaestra(int quantità)
+  -static final String IMAGE_CHIAVE
+  +void aprireForziere(Partita game)
+}
+class Moneta{
+  +Moneta(int quantità)
+  +String getImage()
+  -static final String IMAGE_MONETA
+}
+class Munizioni{
+  +Munizioni(int quantità)
+  +String getImage()
+  -static final String IMAGE_MUNIZIONI  
+}
+class Pistola{
+  +Pistola(int quantità)
+  +String getImage()
+  -static final String IMAGE_PISTOLA
+  +void sapare(Partita game)
+}
+class Nota{
+  +Nota(int quantità)
+  +String getImage()
+  -static final String IMAGE_NOTA
+}
+class Tesoro{
+  +Tesoro(int quantità)
+  +String getImage()
+  -static final String IMAGE_TESORO
+}
+
+class ContributoGioco{
+  -final int punti
+  -final int colpi
+  -final int vita
+  +int getPunti()
+  +int getColpi()
+  +int getVita()
+}
+class Partita{
+  -final static String IMAGE_BERSAGLIO
+  -final static String IMAGE_INIZIO
+  -final static String IMAGE_EXIT
+  -String bucketName
+  -String region
+  -S3Client s3
+  -Scenario sc
+  -Scenario sc_menu
+  -Posizione bersaglio
+  -Posizione bersaglio_ult
+  -boolean exit
+  -boolean win
+  -boolean pistola
+  -boolean monete
+  -boolean chiave_maestra
+  -boolean munizioni
+  -boolean chiave1
+  -boolean chiave2
+  -boolean nota
+  -int zaino
+  -Munizioni pruebaMunicion
+  -Pistola provaPistola
+  -Topo provaTopo
+  -Topo provaTopo1
+  -Topo provaTopoGuardia
+  -TalpaGoffa provaTalpaGoffa
+  -TalpaCieca provaTalpaCieca
+  -Moneta provaMoneta
+  -TalpaIntelligente provaTalpaIntelligente
+  -ChiaveMaestra provaChiaveMaestra
+  -Chiave provaChiave1
+  -Chiave provaChiave2
+  -Nota provaNota
+  -EstadoJuego estado
+  +Partita(int larghezza, int altezza)
+  +boolean spostareBerseglioUlt()
+  +boolean spostareBerseglio(Direzione vicina)
+  +void aggiornare()
+  +void addPannello(PannelloBase pannello)
+  +void addPannelloBaseMenu(PannelloBase pannello)
+  +Scenario getSc()
+  +Posizione getBersaglio()
+  +Chiave getChiaveUno()
+  +Chiave getChiaveDue()
+  +Chiave getChiaveMaestra()
+  +Nota getNota()
+  +Monete getMonete()
+  +boolean getExit()
+  +String getImageBersaglio()
+  +String getImageInizio()
+  +String getImageWin()
+  +String getImageExit()
+  +void setBersaglio() 
+  +void setBersaglioUlt(int x, int y)
+  +LinkedList<Immagine> getImmaginePartita()
+  +boolean isInGioco()
+  +void exit()
+  +void win()
+  +void prepare() 
+  +void start()
+  +void interagire()
+  -void saveGameToS3(String nomepartita)
+  -void loadGameFromS3(String nomepartita)
+  -void updateSaveList(String fileName
+}
+class Immagine{
+  -final String image
+  -final int x
+  -final int y
+  +Immagine(String image, int x, int y)
+  +String getImage()
+  +int getX()
+  +int getY()
+} 
+class Programma{
+  +final static int LARGHEZZA_DEFAULT
+  +final static int ALTEZZA_DEFAULT
+  +final static int DIMENSIONE_QUDRO_DEFAULT
+  +final static Color COLORE_DEFAULT
+  +final static String TASTO_UNO
+  +final static String TASTO_DUE
+  +final static Lock l
+  +static void main (String[] args)
+}
+
+interface Serializable
+
+class PannelloBase{
+  -final static String IMAGE_PANNELLO
+  -final Lock l
+  -Posizione posi
+  -Stato stato
+  -LinkedList<Elemento> elementi
+  +PannelloBase( int x, int y)
+  +PannelloBase(PannelloBase pannello)
+  +void abbattere()
+  +void sollevare()
+  +void mostraPosi()
+  +void mostraStato()
+  +void mostra()
+  +boolean addElemento(Elemento elem)
+  +boolean removeElemento(Elemento elem)
+  +boolean hayElemento(Elemento elem)
+  +void aggiornare(Scenario sc)
+  +LinkedList<ContributoGioco> catturare(Scenario sc)
+  +Posizione getPosi()
+  +Stato getStato()
+  +LinkedList<Elemento> getElementi()
+  +String getImage()
+  +LinkedList<Immagine> getImmaginiPannello()
+  +boolean isVisibile()
+  +String toString()
+}
+class PannelloAleatorio{
+  -final static String IMAGE_PANNELLO
+  +PannelloAleatorio(int x, int y) 
+  +void abbattere()                                                                                                                                                                         
+  +String getImage()
+}
+class PannelloDebole{
+  -final static String IMAGE_PANNELLO
+  -final static int DUREZZA_DEFAULT
+  -final static int CERO
+  -int impatti;
+  -final int durezza;	
+  +PannelloDebole(int x, int y, int durezza)			
+  +PannelloDebole(int x, int y) 
+  +void abbattere() 
+  +void aggiornare(Scenario sc)		
+  +String getImage()
+}
+class PannelloResistente{
+  -final static String IMAGE_PANNELLO
+  -final static int DUREZZA_DEFAULT
+  -final static int CERO
+  -final int durezza;
+  -int impatti;
+  +PannelloResistente(int x, int y, int durezza)	
+  +PannelloResistente(int x, int y) 
+  +void abbattere() 
+  +void aggiornare(Scenario sc) 
+  +String getImage()
+}
+class PannelloMenu{
+  -final static String IMAGE_WIN
+  +PannelloMenu(int x, int y) 
+  +String getImage()
+}
+class Blocco{
+  -final static String IMAGE_BLOCCO
+  +Blocco(int x, int y)
+  +String getImage()
+}
+class Flecha1{
+  -final static String IMAGE_FLECHA
+  +Flecha1(int x, int y)
+  +String getImage()
+}
+class Flecha2{
+  -final static String IMAGE_FLECHA
+  +Flecha2(int x, int y)
+  +String getImage()
+}
+class Lucchetto{
+  -final static String IMAGE_CANDADO
+  -final static int DUREZZA_DEFAULT
+  -final static int CERO 
+  -final int durezza;
+  -int impatti;
+  +Lucchetto(int x, int y, int durezza)	
+  +Lucchetto(int x, int y) 
+  +void abbattere()
+  +void aggiornare(Scenario sc)
+  +String getImage()
+}
+class Porta{
+  -final static String IMAGE_PORTA
+  -final static int DUREZZA_DEFAULT
+  -final static int CERO
+  -final int durezza
+  -int impatti
+  +Porta(int x, int y, int durezza)
+  +Porta(int x, int y)
+  +void abbattere()
+  +void aggiornare(Scenario sc)
+  +String getImage()
+}
+class Posizione{
+  -int x
+  -int y
+  +Posizione(int x, int y)
+  +Posizione(Posizione punto)
+  +int getX()
+  +int getY()
+  +Posizione getVicina(Direzione dir)
+  +void spostare(int sposX, int sposY)
+  +void spostare(Direzione dir)
+  +void mostra()
+  +String toString()
+  +Posizione copiaSuperficiale()
+  +Posizione clone()
+  +int hashCode()
+  +boolean equals(Object obj)
+
+}
+class Scenario{
+  -int larghezza
+  -int altezza
+  -PannelloBase pannelli[][]
+  +Scenario(int a, int b)
+  +boolean isValida(Posizione p)
+  +boolean isValida(int x, int y)
+  +void setPannello(PannelloBase panel) 	
+  +boolean isVisibile(Posizione p)
+  +void abbatterePannello(Posizione p)	
+  +void sollevarePannello(Posizione p)
+  +void aggiornare()			
+  +LinkedList<ContributoGioco> catturare(Posizione posi)
+  +int getLarghezza()
+  +int getAltezza()	
+  +PannelloBase getPannello(int x, int y) 	
+  +PannelloBase getPannello(Posizione p)
+  +String toString()
+}
+enum Stato
+enum Direzione
+
+class EstadoJuego{
+  -static final long serialVersionUID
+  -int bersaglioX
+  -int bersaglioY
+  -int bersaglioUltX
+  -int bersaglioUltY
+  -int getZaino
+  -boolean isPistola
+  -boolean isMonete
+  -boolean isChiaveMaestra
+  -boolean isMunizioni
+  -boolean isChiave1
+  -boolean isChiave2
+  -boolean isNota
+  -int pistolaX
+  -int moneteX
+  -int chiaveMaestraX
+  -int munizioniX
+  -int chiave1X
+  -int chiave2X
+  -int notaX
+  -int pistolaY
+  -int moneteY
+  -int chiaveMaestraY
+  -int munizioniY
+  -int chiave1Y
+  -int chiave2Y
+  -int notaY
+  -boolean isTopo1
+  -boolean isTopo2
+  -boolean isTopo3
+  -boolean isRata1
+  -boolean isRata2
+  -boolean[][] pannelli
+  +EstadoJuego(Partita game)
+  +int getBersaglioX()
+  +int getBersaglioY()
+  +int getBersaglioUltX()
+  +int getBersaglioUltY()
+  +int getGetZaino()
+  +boolean isPistola()
+  +boolean isMonete()
+  +boolean isChiaveMaestra()
+  +boolean isMunizioni()
+  +boolean isChiave1()
+  +boolean isChiave2()
+  +boolean isNota()
+  +int getPistolaX()
+  +int getMoneteX()
+  +int getChiaveMaestraX()
+  +int getMunizioniX()
+  +int getChiave1X()
+  +int getChiave2X()
+  +int getNotaX()
+  +int getPistolaY()
+  +int getMoneteY()
+  +int getChiaveMaestraY()
+  +int getMunizioniY()
+  +int getChiave1Y()
+  +int getChiave2Y()
+  +int getNotaY()
+  +boolean isTopo1()
+  +boolean isTopo2()
+  +boolean isTopo3()
+  +boolean isRata1()
+  +boolean isRata2()
+  +boolean[][] getPannelli()
+}

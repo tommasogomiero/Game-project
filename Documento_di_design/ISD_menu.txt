@@ -1,0 +1,69 @@
+link immagine:
+
+https://www.planttext.com/api/plantuml/png/pLNDZjCm4BxdAURMLc9FUyi1QHT11KBiYY9ndZgZh5d73iwuK9w8z-356AT9I1gdtIDIrIIUp_FxVJOgTXwssYcK5yfgzAoLhj4oFCPtnidQsuQnS1y2bIuZA-OZx6xV62tl_VV3_XifVWXS1zwn9wnwo_sHwSvxFAQCZu5FEp_Jzq3DuEwzdK5FkB6XGCOzDWJtGJqJtttTPHagrWTa6keO5eQCiw5mk7dTutB0MXOgiY7hbk16p0CsXyerx15M3HvezGfMnc4Hd_HJStoYjS4ON6Le6288hAkexl80I8TD08VuPx0jLlJ5xMxN8_XcYXzDAWSbNHglW78MIgC1cRtU1zRYrXpG5iveyJEqQZplYVlaBBj0DhY30rUMnEp6tj84cFYTioVbjCq_wGsa6z8SzfF02KvUZVh3QwQJORrvKV7i1iFvZdDsvx0FsXJarvjJUObkpHHnrMFa_lhq-2HDk9h3CnqlC6WXv_FIUZNbKFSRPjNtt0srA9Lsmk2Fkk75s5Er2GMh6a4z4Vpv7Rza_YrRfLraHFHHVYzIM0AOoZB2eiBUULTTrDYM5gUwrAEI5deqEiuwnWUROiNusFi_2J4xdlC9nLljeYybZ9MlQJrdYbqiDX53_ejHQsU8bbR3Z4NSpjknxYwUdUFS5JOC2D82O-H4OfQRGaorrnM-YCMZ3aT6A_HQK4jinBBKRQgJy_h4_7ZXBBAzCwPyHjFwWkGaef9YdtHeEerrLzfYi7_s1PVKA882JNkn0lLtAFxIplRLU1_T5XhsKgVcu9VZfR4BiPMhujKcZRSoU9cXQvGEyVYmXUoAlxy0
+
+versione testuale:
+
+actor Giocatore
+participant Partita
+participant EstadoJuego
+entity S3Client
+entity ObjectOutputStream
+entity ByteArrayOutputStream
+entity PutObjectRequest
+entity InputStream
+entity ObjectInputStream
+database BucketAWS
+
+activate Partita
+activate S3Client
+
+Giocatore -> Partita: apre menu
+Partita --> Giocatore: mostra 'save', 'load', 'exit', 'annulla'
+alt save nomepartita
+  Giocatore -> Partita: save nomepartita
+  Partita -> Partita: saveGameToS3(nomepartita)
+  Partita -> EstadoJuego: crea EstadoJuego con gli attributi salvandoli
+  activate EstadoJuego
+  Partita -> ByteArrayOutputStream: crea nuovo oggetto
+  activate ByteArrayOutputStream
+  Partita -> ObjectOutputStream: crea nuovo oggetto con ByteArrayOutputStream parametro
+  activate ObjectOutputStream
+  Partita -> ObjectOutputStream: writeObject()
+  Partita -> ByteArrayOutputStream: toByteArray()
+  Partita -> PutObjectRequest: builder() crea oggetto
+  activate PutObjectRequest
+  Partita -> PutObjectRequest: bucket(bucketName)
+  Partita -> PutObjectRequest: key(nomepartita)
+  Partita -> PutObjectRequest: build()
+  Partita -> S3Client: putObject()
+  Partita -> Partita: updateSaveList(nomepartita)
+  Partita --> Giocatore: stampa che è stato salvato
+else load nomepartita
+  Giocatore -> Partita: load nomepartita
+  Partita -> Partita: loadGameFromS3(nomepartita)
+  Partita -> GetObjectRequest: builder()
+  Partita -> S3Client: getObject()
+  Partita -> InputStream: crea un oggetto
+  activate InputStream
+  Partita -> PutObjectRequest: bucket(bucketName)
+  Partita -> PutObjectRequest: key(nomepartita)
+  Partita -> PutObjectRequest: build()
+  Partita -> ObjectInputStream: crea oggetto con argomento InputStream
+  activate ObjectInputStream
+  Partita -> ObjectInputStream: readObject()
+  ObjectInputStream --> Partita: ritorna oggetto
+  Partita -> EstadoJuego: crea oggetto con cast a quello ottenuto prima
+  Partita --> Giocatore: stampa che nomepartita è caricata
+  Partita -> Partita: aggiorna gli attributi
+else exit
+  Giocatore -> Partita: exit
+  Partita -> Partita: exit()
+  Partita --> Giocatore: gioco chiuso
+else annulla
+  Giocatore -> Partita: annulla
+  Partita --> Giocatore: esce dal menu e mostra azioni
+else errore di battitura
+  Giocatore -> Partita: errore di battitura
+  Partita --> Giocatore: comando non riconosciuto
+end

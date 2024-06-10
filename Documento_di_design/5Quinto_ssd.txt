@@ -1,0 +1,41 @@
+SSD USER STORY "CARICARE PARTITA"
+
+link immagine:
+
+https://www.planttext.com/api/plantuml/png/pLD1RWCn2Bpx5MWlkQGVoA7ALuXDLIGlh0oEchw-EBkHzf18EVQ4X6O6Ph3FvjYyppKbpAuDbeetQYajqURC2ug3tSnfJccjyF6veKumgtb3m5zMOIXiIzGBLmw1EsI0Lze9M8mQMoR8EgCKXMacwLEChfu0uA6_6u1B8-0A0vWILIEWrZIQXU62xkozuGloOuoeGEEiefQvk-xXxtWXAQ-zwx8I9iChJSUfAfOezCCU1KLwhJYzcSSWnxeptUDtNBE1Bwu4Xrt_06GSAkBqt4p6C8nG4JR6wuYw3AJrdCbCeL3Ts95vP7NF_Ca28zIdI-pKrrCTL_eWUDChFaJ_oo7pD_T2snCx1sPyXpy0
+
+versione testuale:
+
+@startuml
+
+actor player
+
+participant system
+
+system -> player: mostra azioni disponibili
+
+player -> system: inserisce comando "menu"
+
+alt
+   system --> player: apre il menu
+
+else errore di battitura
+   system --> player: comando non riconosciuto
+   system -> player: mostra azioni disponibili
+end
+system -> player: mostra opzioni "save","load","exit","annulla"
+
+player -> system: inserisce comando "load nomepartita"
+
+alt file 'nomepartita' esistente
+   system -> player: carica la partita
+   system --> player: comunica successo del caricamento
+else file 'nomepartita' non esistente
+   system --> player: errore, file non trovato
+else errore di battitura
+   system --> player: comando non riconosciuto
+   system -> player: mostra azioni disponibili
+end
+system -> player: chiude menu
+
+@enduml

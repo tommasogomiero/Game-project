@@ -1,0 +1,134 @@
+link immagine:
+
+https://www.planttext.com/api/plantuml/png/bLR1ZjGm3BttAt8495Pg5mbf3qZimAwGM8I07yXaF9r8QLEbcP7OF-FCZ-4qIHEd6GINtSRnUt7i-7cuiDgmHwa5nmze9cwi57BYesLVZUuD7mPEhUxRKjjt0ICtKbUDDmECvu9Y744fVS_duaGzosUfnolMcxEoPES9ZKKeJ-TnSPQKGivMA-hvWwk9xoI8YlbH7uyLywVHOjoo1_nFT_MasusbsrWUpzmS96NUdII_m1E7sPhQJbknKUOlkaW2Lcu2NC9CAtAxKn9ZhnRZ6yoOfCtDulPx1Uw553MEknzWhrKTM2coASBzV1RY1DPIxWS5uiJRYetU_bvf8NJJD1z7V9W_sODKi3DmWF5PSYMRPdtTxFMxzAZP7UENY-HiFEiBPrDurbnOUU4MijVV98mZy8vtJ1Z8tGE-2H_EDNQ0zsMwxvTBhfYrRPJMa_SPk3LI07lxwcqJj_sfAPlNw4Z6OJnKOrcwCJ3Wv-zVst1ympPaMG_XgArcqZKSn-hdnwqz6pptO6RUAvc7kpPx5UYQFO1TXNIyByENpJ17sXoucILJM3iztx3900PyM1xmzen5EiWviOnoG3ZQBdXNlfTACbnXMdDdhpCnQrvqrZE22EN-ILe29jEQ5PVPIkWYFpdKwn65Ubi9pIKgCE3xDpq-8xVlX97I44qZT4xJOX2BlYNWiYnykyotexvTwHjqC4D4PIIuQ2I5yr8Ue57OKyM3WPGlpeG0IZCY5N4rvK0YpG5CvNebeEODHqlGRObhjuYE8BeIqP50tGG8_iimM9sN5KdVEXfY1jEioBKlsd9ieQntJ07s9FvrJ4blhvmM6-sQRvnE8QvrM2LzYfOcVf56HW70zY_egygDKHZxucKwF9yBo_OmSOOFJ-cUw5kL3S_5uG78H_Mb7AintzjvkyX_J4_xXktTH3l9dCuFkPJ4AR0meGVm0BreFk6wNOOjK7qrkUfH7Z-Q7KrUTJ-7hs7YcDuWkhyZY2Ri-3ppeulr6YXvq2jsvM-GVxuhXMrorvK_VK3_DtT28lqV
+
+versione testuale:
+
+actor Giocatore
+participant Programma
+participant Partita
+participant Scenario
+participant Scenario.menu
+participant PannelloBase
+participant Posizione
+participant Posizione.ult
+participant Moneta
+participant Munizioni
+participant Pistola
+participant TalpaCieca
+participant TalpaGoffa
+participant TalpaIntelligente
+participant Topo1
+participant Topo2
+participant TopoGuardia
+participant ChiaveMaestra
+participant Chiave1
+participant Chiave2
+participant Nota
+participant Properties
+participant S3Client
+participant PannelloResistente
+participant PannelloAleatorio
+participant PannelloDebole
+participant PannelloBase
+participant Porta
+participant Lucchetto
+participant Flecha1
+participant Flecha2
+participant Blocco
+
+
+Entity FileCredenziali
+
+Giocatore -> Programma : avvia nuova partita
+activate Programma
+
+Programma -> Partita: crea
+activate Partita
+
+Partita -> Scenario: crea oggetto
+activate Scenario
+loop crea matrice 7*7
+Scenario -> PannelloBase: crea oggetto
+activate PannelloBase
+end
+
+Partita -> Scenario.menu: crea menù
+activate Scenario.menu
+
+Scenario.menu-> PannelloBase: crea foto iniziale
+
+Partita -> Posizione: crea bersaglio
+activate Posizione
+
+Partita -> Posizione.ult: crea nuovo oggetto per ricordarsi la pos. precendente
+activate Posizione.ult
+
+Partita -> Partita: imposta variabili stato
+
+Partita -> Moneta: crea moneta
+activate Moneta
+
+Partita -> TalpaCieca: crea TalpaCieca
+activate TalpaCieca
+Partita -> TalpaGoffa: crea TalpaGoffa
+activate TalpaGoffa
+Partita -> TalpaIntelligente: crea Giorgio Talponi
+activate TalpaIntelligente
+
+Partita -> Topo1: crea Topo1
+activate Topo1
+Partita -> Topo2: crea Topo2
+activate Topo2
+Partita -> TopoGuardia: crea TopoGuardia
+activate TopoGuardia
+
+Partita -> Pistola: crea Pistola
+activate Pistola
+
+Partita -> Munizioni: crea Munizioni
+activate Munizioni
+
+Partita -> ChiaveMaestra: crea ChiaveMaestra
+activate ChiaveMaestra
+Partita -> Chiave1: crea Chiave1
+activate Chiave1
+Partita -> Chiave2: crea Chiave2
+activate Chiave2
+
+Partita -> Nota: crea Nota
+activate Nota
+
+Partita -> Properties: crea Properties
+activate Properties
+
+Partita -> FileCredenziali: legge le credenziali
+
+Partita -> Properties: imposta credenziali
+
+Partita -> S3Client: crea S3Client
+activate S3Client
+
+S3Client -> Partita: prende credenziali
+
+Programma -> Partita: start()
+Partita --> Programma: stampa dialogo iniziale
+
+Programma -> Partita: prepare()
+
+Partita -> PannelloResistente: crea PannelloResistente
+loop imposta 14 blocchi
+Partita -> Blocco: imposta pannello come blocco
+end
+loop imposta 3 Porte
+Partita -> Porta: imposta pannello come Porta
+end
+Partita -> Flecha1: imposta pannello come Flecha1
+Partita -> Flecha2: imposta pannello come Flecha2
+Partita -> Cassaforte: imposta pannello come Cassaforte
+loop imposta 2 PannelloDebole
+Partita -> Porta: imposta pannello come PannelloDebole
+end
+loop imposta 2 PannelloAleatoreo
+Partita -> Porta: imposta pannello come PannelloAleatoreo
+end

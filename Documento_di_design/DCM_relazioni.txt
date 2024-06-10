@@ -1,0 +1,141 @@
+link immagine:
+
+https://www.planttext.com/api/plantuml/png/ZPRBRXiX58RtF0MQPIGludGLHLMkZL8rbLNd1V3us4PY80B6KgC-KD-ZBrQ6smmCs5dPdF_dTlWEpAtIHEg-OmYHZTAIj1gtZ2Y5dnXqmBMe2dTQqwF8rJV2tWcQ_7-Wq2Q1Px7R9O4Nhe4nkZU3GeYBz_h4AzCOPdRHXmCbHqWQhmI6ZZxsAZZesEWv_Q22KzzUKQK52-fF4Orle8GqQ_3Z2gubtVHQF5FHXgbN9dKqzdZfEhAdF2nb9SLU4XFpxIUJwQtutiDU86fsAdUa1Rm6IGcZ7sJ30CLXEJS94VT4GHQwOq2qa5HayKVO29QRVu4okvjaDGYlm7iVkcUYZVlvng0zaCkajVIj7ttR7a3hEBEGSUSheMnImpph5ZWP5cdcwV1QcoMxluzKWZEYS9ZuvizYaJDL5iEvezJjJ8wxeZAmPEM9qr6PHnsQUJJX4sMhSJuFuGajC5cqU4JBMYIsA0U0YwBbkQW4lAVy-MnFE4LJ5FryCnBhdWc0TPD7jswmjCvbJ-vS21JNb6L16UakhCEIZdonu-QomHScFFpwv5_Z0qbquNLthZCvT1z9F6snM9wsJ1cjBcV0eJpCih5bKktfSAdlCp1Q7TqLGNKFIOrKfvcWUOrRmHN8Ozav9x0ywBB9E3nhYznNd9F91uJAhgl6KLNPwPV6qNsOv_EJ1_9WQftip1Hr67oPdD6NLJrSyjQ0t07QJ2qMN_qPs4xN-DzVt2jYQyZLYvLFs18Qpfd7ny83TP4GO1_Hn1B6YgzK_cfCJUEBTS8qZkIUZg8sIY63uzXUkvfjr8neohAKLeJYdLLPItAJ9SKHdciyL96KLBqBlWLCwbti6sxiMr2jf4UOEszc2vXPWYF_c2eREy9_D-D7LLgcvItFgxwMcg7ugbh8Jfa35ApZ1UQMcX0NJSC0u_TH4ixpWE8dOtQNUUR9yKZDkTy2tveFzly0
+
+versione testuale:
+
+@startuml
+
+abstract class Elemento
+
+abstract class ElementoAttivo
+abstract class Talpa
+class TalpaCieca
+class TalpaGoffa
+class TalpaIntelligente
+class Topo
+
+abstract class ElementoPassivo
+class Chiave
+class ChiaveMaestra
+class Moneta
+class Munizioni
+class Pistola
+class Nota
+class Tesoro
+
+class ContributoGioco
+class Partita
+class Immagine
+class Programma
+class EstadoJuego
+interface Serializable
+
+class PannelloBase
+class PannelloAleatorio
+class PannelloDebole
+class PannelloResistente
+class PannelloMenu
+class Blocco
+class Flecha1
+class Flecha2
+class Lucchetto
+class Porta
+class Posizione
+class Scenario
+enum Stato
+enum Direzione
+
+Elemento <|-- ElementoAttivo
+Elemento <|-- ElementoPassivo
+
+ElementoAttivo <|-- Talpa
+ElementoAttivo <|-- Topo
+Talpa <|-- TalpaCieca
+Talpa <|-- TalpaGoffa
+Talpa <|-- TalpaIntelligente
+
+ElementoPassivo <|-- Chiave
+ElementoPassivo <|-- ChiaveMaestra
+ElementoPassivo <|-- Moneta
+ElementoPassivo <|-- Munizioni
+ElementoPassivo <|-- Pistola
+ElementoPassivo <|-- Nota
+ElementoPassivo <|-- Tesoro
+
+Serializable <|-- EstadoJuego
+
+PannelloBase <|-- PannelloAleatorio
+PannelloBase <|-- PannelloResistente
+PannelloBase <|-- PannelloDebole
+PannelloBase <|-- PannelloMenu
+PannelloBase <|-- Blocco
+PannelloBase <|-- Flecha1
+PannelloBase <|-- Flecha2
+PannelloBase <|-- Lucchetto
+PannelloBase <|-- Porta
+
+Partita "1" *-- "1" Pistola: ha
+Partita "1" o-- "1" Moneta: ha
+Partita "1" *-- "1" TalpaCieca: ha
+Partita "1" *-- "1" TalpaGoffa: ha
+Partita "1" *-- "1" TalpaIntelligente: ha
+Partita "1" o-- "1" Nota: ha
+Partita "1" *-- "2" Topo: ha
+Partita "1" o-- "1" Tesoro: ha
+Partita "1" o-- "1" Munizioni: ha
+Partita "1" *-- "2" Chiave: ha
+Partita "1" *-- "1" ChiaveMaestra: ha
+Partita "1" o-- "1" EstadoJuego: conserva
+Partita "1" o-- "1" PannelloResistente: ha
+Partita "1" o-- "2" PannelloDebole: ha
+Partita "1" o-- "2" PannelloAleatorio: ha
+Partita "1" o-- "21" PannelloBase: ha
+Partita "1" o-- "3" Porta: ha
+Partita "1" o-- "14" Blocchi: ha
+Partita "1" o-- "1" Tesoro: ha
+Partita "1" o-- "1" Cassaforte: ha
+Partita "1" o-- "1" Flecha1: ha
+Partita "1" o-- "1" Flecha2: ha
+Partita "1" o-- "1" Scenario: ha
+
+Chiave "2" --> "1" Partita: è usata
+
+Pistola "1" --> "1" Partita: è usata
+
+ChiaveMaestra "1" --> "1" Partita: è usata
+
+
+Elemento "1" *--* "1" PannelloBase
+Elemento "1" --> "1" Scenario
+
+ElementoAttivo "1" --> "1" Direzione
+ElementoAttivo "1" --> "1" Scenario
+
+Talpa "1" --> "1" Scenario
+Talpa "1" o-- "1" Direzione
+Talpa "3" --> "1" Partita
+
+Topo "2" --> "1" Partita
+
+Lucchetto "1" --> "1" Scenario
+
+PannelloBase "1" o-- "1" Posizione : corrisponde a
+PannelloBase "1" o-- "1" Stato : descrive
+PannelloBase "1" <--> "1" Scenario
+PannelloBase "1" --> "1" ContributoGioco
+PannelloBase "1" --> "many" Immagine
+PannelloDebole "1" --> "1" Scenario
+PannelloResistente "1" --> "1" Scenario
+
+Porta "1" --> "1" Scenario
+
+Posizione "1" --> "1" Direzione
+
+Scenario "1" *-- "many" PannelloBase
+Scenario --> Posizione
+Scenario --> ContributoGioco
+
+Programma "1" o-- "1" Partita: avvia
+
+@enduml

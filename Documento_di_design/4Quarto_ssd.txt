@@ -1,0 +1,39 @@
+SSD DELLA USER STORY "SALVARE PARTITA"
+
+link immagine:
+
+https://www.planttext.com/api/plantuml/png/pP91QWCn34NtFeMOTNk1B4gkejWY5SYIiUJGzFJrP2OqK09PTlN1lAzlVVleWJr6bPGmXtLeWbVgARLvp9aRQe1VFQYcj2cyV-pK0QfvT0JyPbE6mjwcdbXu3hWXAxpP3i3grDapGRQAMWoMIZgM6IsH0E0-_o40MoTWWHLCYSG9g7URXuNXX14Se-CJypr6JQ5pDZNFFC8UyLTs8ItFTxUs6HR72orlYnYMAVJ5CGLLXmWkB_QnpfZNhNIhF_1lDx_vZd9148ITVLx2KCu8Fd8cTuD2ifa3psUs_zLg_kHHQ7_lusJct_m1
+
+versione testuale:
+
+@startuml
+
+actor player
+
+participant system
+
+system -> player: mostra azioni disponibili
+
+player -> system: inserisce comando "menu"
+
+alt
+   system --> player: apre il menu
+
+else errore di battitura
+   system --> player: comando non riconosciuto
+   system -> player: mostra azioni disponibili
+end
+system -> player: mostra opzioni "save","load","exit","annulla"
+
+player -> system: inserisce comando "save nomepartita"
+
+alt
+   system -> player: salva la partita
+   system --> player: comunica successo del salvataggio
+else errore di battitura
+   system --> player: comando non riconosciuto
+   system -> player: mostra azioni disponibili
+end
+system -> player: chiude menu
+
+@enduml
